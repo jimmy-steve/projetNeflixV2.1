@@ -1,0 +1,56 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 21 août 2022, 17 h 39 min 03 s
+    Author     : lafon
+*/
+
+.card-container {
+    width: 300px;
+    height: 400px;
+}
+.card {
+    width: 100%;
+    height: 100%;
+    transition: transform 1.5s ease-in-out;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}
+
+.card-container:hover .card {
+    transform: rotateY(180deg);
+}
+.card figure {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    margin: 0;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    backface-visibility: hidden;
+
+
+}
+
+.card .front {
+    background-color: white;
+    color: white;
+    text-align: center;
+}
+.card .back {
+    border: 2px solid black;
+    color: black;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+}
+.back button{
+    background: red;;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+}
