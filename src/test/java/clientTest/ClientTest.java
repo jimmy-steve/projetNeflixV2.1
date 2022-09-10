@@ -3,6 +3,7 @@ package clientTest;
 import dao.AbonnementDao;
 import dao.ClientDao;
 import dao.IItem;
+import dao.IclientDao;
 import dao.UserDao;
 import modeles.Abonnement;
 import modeles.Client;
@@ -23,7 +24,7 @@ public class ClientTest {
             Client client = new Client("testNom", "testPrenom", "testAdresse",
                     "testo@gmail.com", "(450)555-5555",
                     genererNombre());
-            IItem clientDao = new ClientDao();
+            IclientDao clientDao = (IclientDao) new ClientDao();
             clientDao.insert(client);
         }
     }

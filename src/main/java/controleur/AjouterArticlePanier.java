@@ -1,9 +1,13 @@
 package controleur;
 
+import dao.ClientDao;
+import dao.FavorisDao;
 import dao.IItem;
 import dao.NetflixDao;
-import modeles.Cart;
+import modeles.Client;
+import modeles.Favoris;
 import modeles.Netflix;
+import modeles.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,13 +20,12 @@ import java.io.IOException;
 
 /**
  * Name : AjouterArticlePanier
- *
+ * <p>
  * Permet d'ajouter un article a notre panier
  *
  * @author Francis Lafontaine
- * @since 01/09/2022
  * @version V1
- *
+ * @since 01/09/2022
  */
 @WebServlet(name = "AjouterArticlePanier", value = "/AjouterArticlePanier")
 public class AjouterArticlePanier extends HttpServlet {
@@ -33,13 +36,33 @@ public class AjouterArticlePanier extends HttpServlet {
         if (session == null) {
             response.sendRedirect("http://localhost:82/error.html");
         }
-        Cart cart = (Cart) session.getAttribute("cart");
+        Favoris cart = (Favoris) session.getAttribute("cart");
+        User user = (User) session.getAttribute("user");
+
+
+        ClientDao clientDao = new ClientDao();
+        Client client = clientDao.getClientByIdUser(user.getIdUser());
+
+
         int id = Integer.parseInt(request.getParameter("id"));
 
         IItem showDao = new NetflixDao();
         Netflix netflix = showDao.getShow(id);
 
-        cart.setQuantite(cart.getQuantite()+1);
+        /*
+        Pour la sauvegarde dans la base donnée
+         */
+        Favoris favoris = new Favoris(client.getIdAbonnement(), user.getIdUser(), netflix.getId());
+        favoris.setQuantite(favoris.getQuantite()+1);
+
+
+        FavorisDao favorisDao = new FavorisDao();
+        favorisDao.insertFavoris(favoris);
+
+        /*
+        pour l'affichage de la liste
+         */
+        cart.setQuantite(cart.getQuantite() + 1);
         cart.getListFilms().add(netflix);
 
         session.setAttribute("listePersonnel", cart.getListFilms());

@@ -1,11 +1,9 @@
 package dao;
 
 import modeles.Client;
+import modeles.User;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -167,4 +165,23 @@ public class ClientDao implements IItem {
     }
 
 
+    public Client getClientByIdUser(long idUser) {
+        EntityManager entityManager = null;
+        try {
+            entityManager = entityManagerFactory.createEntityManager();
+            entityManager.getTransaction().begin();
+            Client client = entityManager.createQuery("SELECT c from Client c WHERE c.idClient = :id_user", Client.class).
+                    setParameter("id_user", idUser).getSingleResult();
+            entityManager.close();
+            return client;
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            return null;
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+            assert entityManager != null;
+            entityManager.getTransaction().rollback();
+            return null;
+        }
+    }
 }

@@ -14,7 +14,7 @@ public class NetflixRepositoryTests {
         Netflix showTest = new Netflix("Test","Film","Title","director","cast",
                 "country","date_added", 2024,"rating","duration",
                 "listed in", "description");
-        IItem showDao = new NetflixDao();
+        NetflixDao showDao = new NetflixDao();
         showDao.insert(showTest);
         System.out.println(showTest);
     }

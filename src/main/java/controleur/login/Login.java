@@ -1,8 +1,8 @@
 package controleur.login;
 
-import dao.NetflixDao;
-import dao.UserDao;
-import modeles.Cart;
+import dao.*;
+import modeles.Client;
+import modeles.Favoris;
 import modeles.Netflix;
 import modeles.User;
 import utilitaire.PasswordUtils;
@@ -85,8 +85,21 @@ public class Login extends HttpServlet {
                     on créer un nouveau panier on y donne une quantité de 0 et une list de film vide
                     */
 
-                    List<Netflix> listFilmsPersonel = new ArrayList<Netflix>();
-                    Cart cart = new Cart(0, listFilmsPersonel);
+                    List<Netflix> listFilmsPersonel = new ArrayList<>();
+                    Favoris cart = new Favoris(0, listFilmsPersonel);
+
+                    /*
+                    Essaie de sauvegarde de création de la liste de favoris
+                     */
+
+                    ClientDao clientDao = new ClientDao();
+                    Client client = clientDao.getClientByIdUser(user.getIdUser());
+
+                    FavorisDao favorisDao = new FavorisDao();
+                    Favoris favoris = new Favoris(client.getIdAbonnement(), user.getIdUser(), 0);
+                    favorisDao.insertFavoris(favoris);
+
+
 
                     /*
                     on prépare une liste de film a afficher
@@ -97,10 +110,14 @@ public class Login extends HttpServlet {
                     List<Netflix> listeShowsScienceFiction = showDao.getListTop5ScienceFiction();
                     List<Netflix> listeShowsFantasy = showDao.getListTop5Fantasy();
 
+
+
                     session.setAttribute("listTop5", listeShows);
                     session.setAttribute("listTop5ScienceFiction", listeShowsScienceFiction);
                     session.setAttribute("listeShowsFantasy", listeShowsFantasy);
+
                     session.setAttribute("cart", cart);
+                    session.setAttribute("favoris" , favoris);
                     dest = "index.jsp";
                 } else {
                     dest = "/WEB-INF/erreurConnection.jsp";
