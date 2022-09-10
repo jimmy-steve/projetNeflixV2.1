@@ -12,7 +12,6 @@
 <head>
     <title>AffListe de show</title>
     <%@include file="/includes/head.jsp" %>
-    <link type="text/css" rel="stylesheet" href="../../includes/style.css">
 </head>
 <body style="background-color: black">
 <%@include file="/includes/navbar.jsp" %>

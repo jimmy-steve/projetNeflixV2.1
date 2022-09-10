@@ -10,7 +10,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Home Page</title>
+    <title>Afficher new Film</title>
+
+
+
+    <script>
+        /* Set the width of the side navigation to 250px */
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "500px";
+        }
+
+        /* Set the width of the side navigation to 0 */
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
     <%@include file="/includes/head.jsp" %>
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/includes/styleIndex.css">
 </head>
