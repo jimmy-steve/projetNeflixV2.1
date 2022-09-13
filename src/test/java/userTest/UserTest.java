@@ -1,6 +1,6 @@
 package userTest;
 
-import dao.IItem;
+import dao.IUserDao;
 import dao.UserDao;
 import modeles.User;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,7 @@ public class UserTest {
     public void testInsert() {
         User user = new User("frank", "1234", true);
 
-        IItem userDao = new UserDao();
+        IUserDao userDao = new UserDao();
         userDao.insert(user);
     }
 
@@ -29,9 +29,26 @@ public class UserTest {
 
     @Test
     public void testGetUser() {
-        UserDao userDao = new UserDao();
-        User user = userDao.getUser(2L);
+        IUserDao iUserDao = new UserDao();
+        User user = iUserDao.getUser(2L);
 
         System.out.println(user);
+    }
+
+    @Test
+    public void testUpdateUser() {
+        IUserDao iUserDao = new UserDao();
+        User user = iUserDao.getUser(5L);
+
+        System.out.println(user);
+
+        String username = "Salut";
+
+        boolean resultat = iUserDao.updateUser(user.getIdUser(),username);
+
+        User userAfter = iUserDao.getUser(5L);
+        System.out.println(userAfter);
+
+        System.out.println(resultat);
     }
 }

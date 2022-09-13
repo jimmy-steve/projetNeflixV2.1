@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
+import java.sql.PreparedStatement;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ import java.util.List;
  * @version V2
  * @since 01/09/2022
  */
-public class UserDao implements IItem {
+public class UserDao implements IUserDao {
     /**
      * Name : getAllUsers
      * Méthode permmetant d'aller chercher tout la liste des users
@@ -26,6 +27,7 @@ public class UserDao implements IItem {
      *
      * @return une liste de tous les users
      */
+    @Override
     public List<User> getAllUsers() {
         List listeUsers = null;
 
@@ -34,6 +36,7 @@ public class UserDao implements IItem {
             entityManager = entityManagerFactory.createEntityManager();
             entityManager.getTransaction().begin();
             Query query = entityManager.createNativeQuery("SELECT * FROM User;", User.class);
+
             listeUsers = query.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -52,7 +55,8 @@ public class UserDao implements IItem {
      * @param idUser pren un int en paramete qui est le id user
      * @return le user directement
      */
-    public static User getUser(long idUser) {
+    @Override
+    public User getUser(long idUser) {
         User user = null;
         EntityManager entityManager = null;
         try {
@@ -70,12 +74,14 @@ public class UserDao implements IItem {
     }
 
     /**
-     * Name : updateUser
-     * Permet de faire l'update d'un user dans la base donnée
-     *
-     * @param user dans la base de donnée
+     *  Name : updateUser
+     *  Permet de faire un update du user
+     * @param username qui sera modificé
+     * @return un user modifé
      */
-    public void updateUser(User user) {
+    @Override
+    public boolean updateUser(long id, String username) {
+
         EntityManager entityManager = null;
 
         /*
@@ -90,14 +96,17 @@ public class UserDao implements IItem {
              * recherche une personne selon son id
              */
 
-            user = entityManager.find(User.class, user.getIdUser());
-            user.setUsername(user.getUsername());
-            user.setHashPassword(user.getHashPassword());
+            User user = entityManager.find(User.class, id);
+            user.setUsername(username);
+
+            entityManager.merge(user);
             entityManager.persist(user);
             entityManager.getTransaction().commit();//dans L'etat de persistent
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
             entityManager.getTransaction().rollback();//----------------reviens en arrière
+            return false;
         } finally {
             entityManager.close();//dans l'etat detached
         }
@@ -111,6 +120,7 @@ public class UserDao implements IItem {
      * @param idUser du user que l'on veut supprimer
      * @return un message de confirmation dans la console
      */
+    @Override
     public String deleteUser(long idUser) {
         User user = null;
         EntityManager entityManager = null;
@@ -174,8 +184,14 @@ public class UserDao implements IItem {
         }
     }
 
-
-
+    /**
+     * Name : doExist
+     * Permet d'aller vérifier dans la base de donnée si le username existe
+     *
+     * @param username le username du user
+     * @return true si il existe
+     */
+    @Override
     public boolean doExist(String username) {
         EntityManager entityManager = null;
         try {

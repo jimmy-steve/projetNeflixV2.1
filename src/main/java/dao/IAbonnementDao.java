@@ -1,13 +1,10 @@
 package dao;
 
-import modeles.Netflix;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.util.List;
 
-public interface INetflixDao {
+public interface IAbonnementDao {
     EntityManagerFactory entityManagerFactory =
             Persistence.createEntityManagerFactory("hibernate");
     /**
@@ -30,17 +27,4 @@ public interface INetflixDao {
             return false;
         }
     }
-    /**
-     * Permet d'aller cherche tout la liste des shows
-     *
-     * @return une liste de show complête
-     */
-    List<Netflix> getAllShows();
-
-    /**
-     * Permet d'aller chercher un show
-     *
-     * @return un show
-     */
-    Netflix getShow(int id);
 }

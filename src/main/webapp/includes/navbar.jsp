@@ -26,7 +26,7 @@
                                     <p class="mb-0">
                                         You have
                                         <span class="badge badge-warning">
-                                            ${sessionScope.cart.quantite}
+                                            ${sessionScope.favoris.getQuantite()}
                                         </span>
                                         items in your cart
                                     </p>
@@ -46,7 +46,7 @@
                                     <th scope="col" colspan="2" class="text-center">Action</th>
                                 </tr>
                                 </thead>
-                                <c:forEach var="show" items="${sessionScope.listePersonnel}">
+                                <c:forEach var="show" items="${sessionScope.listeTemporaire}">
                                     <tbody>
 
 
@@ -56,98 +56,26 @@
                                         <td>${show.title}</td>
                                         <td>
                                             <form action="DetailShow" method="get">
+                                                <input type="hidden" name="source" value="client">
                                                 <input type="hidden" name="id" value="${show.id}">
                                                 <input type="submit" class="btn-success btn-sm" value="Detail">
                                             </form>
                                         </td>
                                         <td>
-                                            <form action="" name="BoutonSupprimerFavoris" method="post">
+                                            <form action="DeleteFavoris" name="deleteFavoris" method="get">
+                                                <input type="hidden" name= "delindex" value='${sessionScope.listeTemporaire.indexOf(show)}'>
+                                                <input type="hidden" name="id" value="${sessionScope.favorisBaseDeDonnee.idFav}">
                                                 <input type="submit" class="btn-danger btn-sm" value="Supprimer">
                                             </form>
                                         </td>
+
                                     </tr>
 
 
                                     </tbody>
                                 </c:forEach>
                             </table>
-
                             <br><br>
-
-
-                            <table class="table table-striped table-hover table-bordered bg-light">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Information</th>
-                                    <th scope="col">Donnée</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <th scope="row">Id :</th>
-                                    <td>${show.showId}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Type :</th>
-                                    <td>${show.type}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Title :</th>
-                                    <td>${show.title}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Director :</th>
-                                    <td>${show.director}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Cast :</th>
-                                    <td>${show.cast}</td>
-                                </tr>
-
-                                <tr>
-                                    <th scope="row">Country :</th>
-                                    <td>${show.country}</td>
-                                </tr>
-
-                                <tr>
-                                    <th scope="row">Date Added :</th>
-                                    <td>${show.dateAdded}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Release year :</th>
-                                    <td>${show.releaseYear}</td>
-                                </tr>
-
-                                <tr>
-                                    <th scope="row">Rating :</th>
-                                    <td>${show.rating}</td>
-                                </tr>
-
-                                <tr>
-                                    <th scope="row">Duration :</th>
-                                    <td>${show.duration}</td>
-                                </tr>
-
-                                <tr>
-                                    <th scope="row">Listed In:</th>
-                                    <td>${show.listedIn}</td>
-                                </tr>
-
-
-                                <tr class="text-center">
-
-                                    <td colspan="2" class="text-center">
-                                        <a class="btn btn-danger" href="">Acheter</a>
-                                        <a href="AjouterArticlePanier?id=${show.id}"
-                                           class=" btn btn-success ">Ajouter</a>
-                                    </td>
-
-
-                                </tr>
-
-
-                                </tbody>
-                            </table>
 
 
                         </div>
@@ -160,9 +88,10 @@
 
         </div>
 
-        <a class="nav-link mr-4 text-light btn-outline-danger btn" onclick="openNav()" style="margin-right: 10px">Favoris
-            V2
-            <span class="badge badge-warning">${sessionScope.cart.quantite}</span> </a>
+        <a class="nav-link mr-4 text-light btn-outline-danger btn" onclick="openNav()" style="margin-right: 10px">
+            Favoris
+            <span class="badge badge-warning">${sessionScope.listeTemporaire.size()}</span>
+        </a>
 
 
         <a class="navbar-brand text-uppercase fw-bolder mx-4 py-3 ml-5" href="index.jsp"
@@ -179,10 +108,6 @@
                 <li class="nav-item pe-4 mr-4">
                     <a class="nav-link active" aria-current="page" href="index.jsp">Accueil</a>
                 </li>
-
-                <li class="nav-item mr-4"><a class="nav-link" href="cart.jsp" style="margin-right: 10px">Cart
-                    <span class="badge badge-danger">${sessionScope.cart.quantite}</span> </a></li>
-
                 <li class="nav-item dropdown pe-4 mr-4">
                     <a class="nav-link dropdown-toggle" href="#" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">

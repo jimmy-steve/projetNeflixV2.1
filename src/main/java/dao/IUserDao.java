@@ -1,7 +1,6 @@
 package dao;
 
-import modeles.Client;
-import modeles.Netflix;
+import modeles.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -16,7 +15,7 @@ import java.util.List;
  * @version V1
  * @since 01/09/2022
  */
-public interface IItem {
+public interface IUserDao {
     EntityManagerFactory entityManagerFactory =
             Persistence.createEntityManagerFactory("hibernate");
     /**
@@ -40,23 +39,6 @@ public interface IItem {
         }
     }
 
-    /**
-     * Permet d'aller cherche tout la liste des shows
-     *
-     * @return une liste de show complête
-     */
-    default List<Netflix> getAllShows() {
-        return null;
-    }
-
-    /**
-     * Permet d'aller chercher un show
-     *
-     * @return un show
-     */
-    default Netflix getShow(int id) {
-        return null;
-    }
 
     /**
      * Permet de supprimer un objet selon son id
@@ -77,6 +59,17 @@ public interface IItem {
     default Object find(String username) {
         return null;
     }
+
+    User getUser(long idUser);
+
+
+    List<User> getAllUsers();
+
+    boolean updateUser(long id, String username);
+
+    String deleteUser(long idUser);
+
+    boolean doExist(String username);
 
 
 }

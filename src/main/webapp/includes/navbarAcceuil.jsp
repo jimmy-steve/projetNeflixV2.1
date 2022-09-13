@@ -60,17 +60,15 @@
                     </ul>
                 </li>
 
-                <form class="form-inline">
-                    <input class="form-control mr-sm-2 mr-4" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0 mr-4 ml-4" type="submit">Search</button>
-                </form>
-
 
                 <li class="nav-item">
 
                     <div class="text-center">
                         <a href="formulaireLogin.jsp" class=" btn btn-danger ml-2 mr-2" style="margin-right: 10px">
                             Login
+                        </a>
+                        <a href="registerForms.jsp" class=" btn btn-outline-danger ml-2 mr-2" style="margin-right: 10px">
+                            Register
                         </a>
                     </div>
                 </li>

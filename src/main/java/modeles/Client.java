@@ -64,6 +64,10 @@ public class Client {
         this.idAbonnement = idAbonnement;
     }
 
+    public Client(String nom) {
+        this.nom = nom;
+    }
+
     public long getIdUser() {
         return idUser;
     }

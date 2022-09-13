@@ -45,7 +45,7 @@
         </div>
 
 
-        <div class="col-10 " style="margin-right: auto; margin-left: auto">
+        <div class="col-8 m-5" style="margin-right: auto; margin-left: auto">
             <div class="card">
                 <table class="table table-hover table-striped">
                     <thead class="thead-light">
@@ -67,35 +67,33 @@
                         <th scope="col">Action</th>
                     </tr>
                     </thead>
+                    <c:forEach var="netflix" items="${sessionScope.listShows}">
                     <tbody>
-                    <c:forEach var="show" items="${sessionScope.listeShows}">
-                        <form action="" name="forms2" method="post">
-                            <tr>
-
-                                <td>${show.showId}</td>
-                                <td>${show.type}</td>
-                                <td>${show.title}</td>
-                                    <%--                                <td>${show.director}</td>--%>
-                                    <%--                                <td>${show.cast}</td>--%>
-                                <td>${show.country}</td>
-
-                                <td>${show.dateAdded}</td>
-                                <td>${show.releaseYear}</td>
-                                <td>${show.rating}</td>
-                                <td>${show.duration}</td>
-                                <td>${show.listedIn}</td>
-                                    <%--                                <td>${show.description}</td>--%>
 
 
-                                <td>
-                                    <a href="DetailShow?source=admin&id=${show.id}"
+                        <tr>
+
+                            <td>${netflix.showId}</td>
+                            <td>${netflix.type}</td>
+                            <td>${netflix.title}</td>
+                            <td>${netflix.country}</td>
+                            <td>${netflix.dateAdded}</td>
+                            <td>${netflix.releaseYear}</td>
+                            <td>${netflix.rating}</td>
+                            <td>${netflix.duration}</td>
+                            <td>${netflix.listedIn}</td>
+
+                            <td>
+                                <form action="" name="forms2" method="post">
+                                    <a href="DetailShow?source=admin&id=${netflix.id}"
                                        class=" btn btn-success ">Modifié</a>
-                                </td>
-                            </tr>
-                        </form>
-                    </c:forEach>
-                    </tbody>
+                                </form>
+                            </td>
+                        </tr>
 
+
+                    </tbody>
+                    </c:forEach>
                 </table>
             </div>
         </div>

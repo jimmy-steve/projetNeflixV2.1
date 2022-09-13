@@ -18,6 +18,11 @@ public class User {
     public User() {
     }
 
+    public User(long idUser, String username) {
+        this.idUser = idUser;
+        this.username = username;
+    }
+
     public User(long idUser, String username, String hashPassword) {
         this.idUser = idUser;
         this.username = username;

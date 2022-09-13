@@ -1,9 +1,6 @@
 package controleur;
 
-import dao.ClientDao;
-import dao.FavorisDao;
-import dao.IItem;
-import dao.NetflixDao;
+import dao.*;
 import modeles.Client;
 import modeles.Favoris;
 import modeles.Netflix;
@@ -24,19 +21,17 @@ import java.io.IOException;
  * Permet d'ajouter un article a notre panier
  *
  * @author Francis Lafontaine
- * @version V1
- * @since 01/09/2022
+ * @version V2
+ * @since 23/sept/2022
  */
 @WebServlet(name = "AjouterArticlePanier", value = "/AjouterArticlePanier")
 public class AjouterArticlePanier extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String dest = "cart.jsp";
+        String dest = "index.jsp";
         HttpSession session = request.getSession();
-        if (session == null) {
-            response.sendRedirect("http://localhost:82/error.html");
-        }
-        Favoris cart = (Favoris) session.getAttribute("cart");
+
+        Favoris favoris = (Favoris) session.getAttribute("favoris");
         User user = (User) session.getAttribute("user");
 
 
@@ -46,26 +41,28 @@ public class AjouterArticlePanier extends HttpServlet {
 
         int id = Integer.parseInt(request.getParameter("id"));
 
-        IItem showDao = new NetflixDao();
+        INetflixDao showDao = new NetflixDao();
         Netflix netflix = showDao.getShow(id);
 
-        /*
+        /*z
         Pour la sauvegarde dans la base donnée
          */
-        Favoris favoris = new Favoris(client.getIdAbonnement(), user.getIdUser(), netflix.getId());
-        favoris.setQuantite(favoris.getQuantite()+1);
-
-
+        Favoris favorisBaseDonnee = new Favoris(client.getIdAbonnement(), user.getIdUser(), netflix.getId());
         FavorisDao favorisDao = new FavorisDao();
-        favorisDao.insertFavoris(favoris);
+        favorisDao.insertFavoris(favorisBaseDonnee);
 
         /*
         pour l'affichage de la liste
          */
-        cart.setQuantite(cart.getQuantite() + 1);
-        cart.getListFilms().add(netflix);
+        favoris.setQuantite(favoris.getQuantite()+1);
+        favoris.getListFilms().add(netflix);
 
-        session.setAttribute("listePersonnel", cart.getListFilms());
+
+        session.setAttribute("favoris", favoris);
+
+        session.setAttribute("listeTemporaire", favoris.getListFilms());
+
+        session.setAttribute("favorisBaseDeDonnee", favorisBaseDonnee );
 
         RequestDispatcher disp = request.getRequestDispatcher(dest);
         disp.forward(request, response);

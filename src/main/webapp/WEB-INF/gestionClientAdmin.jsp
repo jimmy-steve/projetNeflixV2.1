@@ -36,21 +36,32 @@
                     <th>Email</th>
                     <th>Adresse</th>
                     <th>Telephone</th>
-                    <th>Type abonnement</th>
-                    <th>UserName</th>
-                    <th>Password</th>
-                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
+                <form action="Register" method="post">
+                    <tr>
 
-                <tr>
-                    <form action="Register" method="post">
                         <td><input type="text" name="nomNew" id="nomNew" value=""/></td>
                         <td><input type="text" name="prenomNew" id="prenomNew" value=""/></td>
                         <td><input type="text" name="emailNew" id="emailNew" value=""/></td>
                         <td><input type="text" name="adresseNew" id="adresseNew" value=""/></td>
                         <td><input type="text" name="telephoneNew" id="telephoneNew" value=""/></td>
+
+
+                    </tr>
+
+
+                    <tr>
+                        <th>Type abonnement</th>
+                        <th>UserName</th>
+                        <th>Password</th>
+                        <th>Admin</th>
+                        <th>Action</th>
+                    </tr>
+
+                    <tr>
+
                         <td>
                             <select class="form-control form-control-sm" id="typeAbonnementNew"
                                     name="typeAbonnementNew">
@@ -63,13 +74,20 @@
 
                         <td><input type="text" name="userNameNew" id="userNameNew" value=""/></td>
                         <td><input type="text" name="passWordNew" id="passWordNew" value=""/></td>
-
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="admin">
+                                <label class="form-check-label text-light" for="admin">
+                                    Admin
+                                </label>
+                            </div>
+                        </td>
                         <td>
                             <input type="hidden" name="source" value="gestionClientAdmin">
                             <input class="btn btn-danger " type="submit" value="AJOUTER"/>
                         </td>
-                    </form>
-                </tr>
+                    </tr>
+                </form>
                 </tbody>
 
 
@@ -108,7 +126,7 @@
             <div class="card border border-dark" style="width:600px;margin:auto;margin-top:50px ">
                 <h2 class="bg-warning text-light card-header text-center text-dark ">Modification d'un client</h2>
                 <form class="form" action="UpdateClient" method="post">
-                    <table class="table table-hover table-striped table-bordered">
+                    <table class="table table-hover table-striped table-bordered table-responsible">
 
                         <thead>
                         <tr>
@@ -164,11 +182,6 @@
                                 <td><input type="text" id="userName" name="userName"
                                            value="${requestScope.user.username}"/></td>
                             </tr>
-                            <tr class="bg-dark">
-                                <th scope="row" class="text-light"><label for="password">Password :</label></th>
-                                <td><input type="text" id="password" name="password"
-                                           value="${requestScope.user.hashPassword}"/></td>
-                            </tr>
 
 
                         </form>
@@ -212,7 +225,7 @@
                         <tr>
 
 
-                            <th scope="row">${client.idClient}</th>
+                            <th scope="row">${sessionScope.client.idClient}</th>
                             <td>${client.prenom} ${client.nom}</td>
                             <td>${client.email}</td>
                             <td>${client.idAbonnement}</td>

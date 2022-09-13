@@ -65,7 +65,8 @@
                                class=" btn btn-success ">Detail</a>
                         </td>
                         <td>
-                            <a class=" btn btn-danger ">Supprimer</a>
+                            <a class="btn btn-danger"
+                               href="DeleteFavoris?id=">Supprimer</a>
                         </td>
                     </tr>
                 </form>
@@ -82,6 +83,7 @@
 
 
         <c:forEach var="show" items="${sessionScope.listePersonnel}">
+
             <div class="col-md-4 my-3 text-center ">
                 <div class="card w-100 border-primary mb-3">
                     <div class="card-body ">
@@ -118,7 +120,8 @@
                                 <a href="DetailShow?id=${show.id}"
                                    class=" btn btn-success ">Detail</a>
 
-                                <a class=" btn btn-danger ">Supprimer</a>
+                                <a class="btn btn-danger"
+                                   href="DeleteFavoris?id=${sessionScope.listePersonnel.idFav}">Supprimer</a>
                             </div>
 
                         </form>

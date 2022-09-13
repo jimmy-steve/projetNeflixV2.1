@@ -18,7 +18,8 @@ import java.util.List;
  * @version V1
  * @since 01/09/2022
  */
-public class NetflixDao implements IItem {
+
+public class NetflixDao implements INetflixDao {
     static EntityManagerFactory entityManagerFactory =
             Persistence.createEntityManagerFactory("hibernate");
 
@@ -308,6 +309,25 @@ public class NetflixDao implements IItem {
             e.printStackTrace();
             entityManager.getTransaction().rollback();
             return listTop5Fantasy;
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    public List<Netflix> getList50() {
+        List<Netflix> listTop50 = new ArrayList<>();
+        EntityManager entityManager = null;
+        try {
+            entityManager = entityManagerFactory.createEntityManager();
+            entityManager.getTransaction().begin();
+            Query query = entityManager.createNativeQuery("" +
+                    "select * from netflix where listed_in like '%Fantasy%' limit 50;", Netflix.class);
+            listTop50 = query.getResultList();
+            return listTop50;
+        } catch (Exception e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+            return listTop50;
         } finally {
             entityManager.close();
         }

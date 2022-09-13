@@ -3,7 +3,6 @@ CREATE TABLE `netflix`.`favoris` (
   `id_abonnement` VARCHAR(45) NULL,
   `id_user` BIGINT NULL,
   `id_netflix` INT NULL,
-  `quantite` INT NULL,
   PRIMARY KEY (`id_favoris`),
   INDEX `IdAbonnement_pour_idFavoris_idx` (`id_abonnement` ASC) VISIBLE,
   INDEX `idUser_pour_idFavoris_fk_idx` (`id_user` ASC) VISIBLE,

@@ -1,8 +1,11 @@
 package controleur;
 
 import dao.ClientDao;
+import dao.INetflixDao;
+import dao.NetflixDao;
 import dao.UserDao;
 import modeles.Client;
+import modeles.Netflix;
 import modeles.User;
 
 import javax.servlet.RequestDispatcher;
@@ -21,8 +24,8 @@ import java.util.List;
  * Elle renvoit les bonnes informations au différente page de gestion
  *
  * @author Francis Lafontaine
- * @version V1
- * @since 01/09/2022
+ * @version V2
+ * @since 12/sept/2022
  */
 @WebServlet(name = "GestionAdmin", value = "/GestionAdmin")
 public class GestionAdmin extends HttpServlet {
@@ -48,6 +51,10 @@ public class GestionAdmin extends HttpServlet {
             dest = "/WEB-INF/gestionAbonnementAdmin.jsp";
         } else if (source.equals("show")) {
             dest = "/WEB-INF/gestionShowAdmin.jsp";
+            NetflixDao showDao = new NetflixDao();
+            List<Netflix> listShows = showDao.getList50();
+
+            session.setAttribute("listShows", listShows);
         }
         RequestDispatcher disp = request.getRequestDispatcher(dest);
         disp.forward(request, response);

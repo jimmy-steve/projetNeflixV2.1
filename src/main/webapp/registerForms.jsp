@@ -140,6 +140,7 @@
                             <div class="invalid-feedback">
                                 You must agree before submitting.
                             </div>
+
                         </div>
                     </div>
                     <div class="text-center">

@@ -23,7 +23,7 @@ public class Favoris {
     private long idUser;
     @Column(name = "id_netflix")
     private int idNetflix;
-    private int quantite;
+    static private int quantite;
 
     public Favoris() {
     }
@@ -32,7 +32,7 @@ public class Favoris {
         this.idAbonnement = idAbonnement;
         this.idUser = idUser;
         this.idNetflix = idNetflix;
-        this.quantite = quantite;
+        Favoris.quantite = quantite;
     }
 
     public Favoris(String idAbonnement, long idUser) {
@@ -81,21 +81,17 @@ public class Favoris {
     //variable static messemble que hibernate n'y touche pas
     static List<Netflix> listFilms;
 
-    public Favoris(int quantite) {
-        this.quantite = quantite;
-    }
-
     public Favoris(int quantite, List<Netflix> listFilms) {
-        this.quantite = quantite;
+        Favoris.quantite = quantite;
         Favoris.listFilms = listFilms;
     }
 
     public int getQuantite() {
-        return quantite;
+        return Favoris.quantite;
     }
 
     public void setQuantite(int quantite) {
-        this.quantite = quantite;
+        Favoris.quantite = quantite;
     }
 
     public List<Netflix> getListFilms() {

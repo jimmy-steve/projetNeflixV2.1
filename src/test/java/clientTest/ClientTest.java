@@ -2,7 +2,7 @@ package clientTest;
 
 import dao.AbonnementDao;
 import dao.ClientDao;
-import dao.IItem;
+import dao.IUserDao;
 import dao.IclientDao;
 import dao.UserDao;
 import modeles.Abonnement;
@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static utilitaire.GenerateurNombreSequentiel.*;
 import static utilitaire.GenerateurNombreSequentiel.genererNombre;
 
 
@@ -58,13 +57,13 @@ public class ClientTest {
             /*
              * j'enregistre le user dans la base de donnée
              */
-            IItem userDao = new UserDao();
+            IUserDao userDao = new UserDao();
             userDao.insert(user);
             /*
              * J'enregistre le client dans la base de donnée
              */
             client.setIdUser(user.getIdUser());
-            IItem clientDao = new ClientDao();
+            IclientDao clientDao = new ClientDao();
             clientDao.insert(client);
 
             /*
@@ -79,9 +78,7 @@ public class ClientTest {
             AbonnementDao abonnementDao = new AbonnementDao();
             abonnementDao.insert(abonnement);
         }
-
     }
-
 
     @Test
     public void testGenererTableauSequentiel() {
@@ -100,9 +97,9 @@ public class ClientTest {
 
     @Test
     public void testGetClient() {
-        ClientDao clientDao = new ClientDao();
+        IclientDao clientDao = new ClientDao();
 
-        System.out.println(ClientDao.getClient(1L));
+        System.out.println(clientDao.getClient(1L));
 
     }
 
@@ -115,6 +112,27 @@ public class ClientTest {
         System.out.println(userDao.deleteUser(client.getIdUser()));
 
     }
+
+    @Test
+    public void testUpdateClient() {
+        IclientDao iclientDao = new ClientDao();
+
+        Client client = iclientDao.getClient(5L);
+        System.out.println(client);
+
+        String nom = "SalutTest";
+
+        boolean resultat = iclientDao.updateClient(client.getIdClient(), nom, client.getPrenom(),
+                client.getAdresse(), client.getEmail(), client.getTelephone(), client.getIdUser() );
+
+        Client newClient = iclientDao.getClient(5L);
+        System.out.println(newClient);
+
+        System.out.println(resultat);
+
+    }
+
+
 
 
 

@@ -1,7 +1,8 @@
 package dao;
 
 import modeles.Client;
-import modeles.User;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
  * @version V1
  * @since 01/09/2022
  */
-public class ClientDao implements IItem {
+public class ClientDao implements IclientDao {
     static EntityManagerFactory entityManagerFactory =
             Persistence.createEntityManagerFactory("hibernate");
 
@@ -92,8 +93,8 @@ public class ClientDao implements IItem {
      * @param numeroClient qui est son id de client
      * @return un objet de type client
      */
-    public static Object getClient(long numeroClient) {
-        Object client = null;
+    public Client getClient(long numeroClient) {
+        Client client = null;
         EntityManager entityManager = null;
 
         /*
@@ -127,9 +128,12 @@ public class ClientDao implements IItem {
      * @param idUser    son iderUser
      * @return true si ok
      */
+    @Override
     public boolean updateClient(long id, String nom, String prenom, String adresse, String email,
                                 String telephone, long idUser) {
         EntityManager entityManager = null;
+            entityManager = entityManagerFactory.createEntityManager();
+            entityManager.getTransaction().begin();
 
         /*
          * faire un try catch pour gerer les probleme lors de la transaction
@@ -164,7 +168,45 @@ public class ClientDao implements IItem {
         }
     }
 
+    @Override
+    public boolean updateClient(long id, String nom) {
+        EntityManager entityManager = null;
 
+        /*
+         * faire un try catch pour gerer les probleme lors de la transaction
+         */
+
+        try {
+            entityManager = entityManagerFactory.createEntityManager();
+            entityManager.getTransaction().begin();
+
+            /*
+             * recherche une personne selon son id
+             */
+
+            Client client = entityManager.find(Client.class, id);
+            client.setNom(nom);//--------------------------- dans l'etat detached
+            entityManager.merge(client);
+            entityManager.persist(client);
+            entityManager.getTransaction().commit();//dans L'etat de persistent
+            System.out.println("Réussi");
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();//----------------reviens en arrière
+            return false;
+        } finally {
+            entityManager.close();//dans l'etat detached
+        }
+    }
+
+    /**
+     * Name : getClientBidUser
+     * Permet d'aller chercher un client par son IdUser
+     *
+     * @param idUser un long qui est le id_user du user rechercher
+     * @return le client
+     */
     public Client getClientByIdUser(long idUser) {
         EntityManager entityManager = null;
         try {
@@ -182,6 +224,30 @@ public class ClientDao implements IItem {
             assert entityManager != null;
             entityManager.getTransaction().rollback();
             return null;
+        }
+    }
+
+    /**
+     * Name : Insert
+     * Permet d'insérer un client dans la base de donnée
+     *
+     * @param client le client qui sera insérer
+     * @return un client
+     */
+    @Override
+    public Client insert(Client client) {
+        EntityManager entityManager = null;
+        try {
+            entityManager = entityManagerFactory.createEntityManager();
+            entityManager.getTransaction().begin();
+            entityManager.persist(client);
+            entityManager.getTransaction().commit();
+            entityManager.close();
+            return client;
+        } catch (Exception e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+            return client;
         }
     }
 }

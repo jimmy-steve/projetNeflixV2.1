@@ -1,6 +1,5 @@
 package dao;
 
-
-public class AbonnementDao implements IItem {
+public class AbonnementDao implements IAbonnementDao {
 
 }

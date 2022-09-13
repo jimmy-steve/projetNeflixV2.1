@@ -14,8 +14,8 @@ import java.io.IOException;
  * et tranfert l'information dans le formulaire de connexion pour faire comme netflix
  *
  * @author Francis Lafontaine
- * @version V1
- * @since 01/09/2022
+ * @version V2
+ * @since 12/sept/2022
  */
 @WebServlet(name = "UserNameLogin", value = "/UserNameLogin")
 public class UserNameLogin extends HttpServlet {

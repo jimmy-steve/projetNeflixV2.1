@@ -1,6 +1,8 @@
 package controleur.client;
 
 import dao.ClientDao;
+import dao.IUserDao;
+import dao.IclientDao;
 import dao.UserDao;
 import modeles.Client;
 import modeles.User;
@@ -30,10 +32,12 @@ public class GetClient extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String dest = "/WEB-INF/gestionClientAdmin.jsp";
         long numeroClient = Long.parseLong(request.getParameter("id"));
+        IclientDao iclientDao = new ClientDao();
+        IUserDao iUserDao = new UserDao();
 
-        Client client = (Client) ClientDao.getClient(numeroClient);
+        Client client = iclientDao.getClient(numeroClient);
 
-        User user = UserDao.getUser(client.getIdUser());
+        User user = iUserDao.getUser(client.getIdUser());
 
         System.out.println(user);
         System.out.println(client);

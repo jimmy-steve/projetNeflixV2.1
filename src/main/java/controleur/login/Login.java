@@ -52,7 +52,6 @@ public class Login extends HttpServlet {
 
         try {
 
-
             String userName = request.getParameter("username");
             String passWord = request.getParameter("password");
             UserDao userDao = new UserDao();
@@ -72,33 +71,12 @@ public class Login extends HttpServlet {
 
                 if (isValid && user.isAdmin()) {
 
-
-    //                NetflixDao showDao = new NetflixDao();
-    //                listeShows = showDao.GetAllCanadianShowsRecent();
-    //                session.setAttribute("listeshows", listeShows);
-
                     dest = "/WEB-INF/Connecter.jsp";
 
                 } else if (isValid && !user.isAdmin()) {
 
-                    /*
-                    on créer un nouveau panier on y donne une quantité de 0 et une list de film vide
-                    */
-
                     List<Netflix> listFilmsPersonel = new ArrayList<>();
-                    Favoris cart = new Favoris(0, listFilmsPersonel);
-
-                    /*
-                    Essaie de sauvegarde de création de la liste de favoris
-                     */
-
-                    ClientDao clientDao = new ClientDao();
-                    Client client = clientDao.getClientByIdUser(user.getIdUser());
-
-                    FavorisDao favorisDao = new FavorisDao();
-                    Favoris favoris = new Favoris(client.getIdAbonnement(), user.getIdUser(), 0);
-                    favorisDao.insertFavoris(favoris);
-
+                    Favoris favoris = new Favoris(0, listFilmsPersonel);
 
 
                     /*
@@ -112,12 +90,13 @@ public class Login extends HttpServlet {
 
 
 
+
                     session.setAttribute("listTop5", listeShows);
                     session.setAttribute("listTop5ScienceFiction", listeShowsScienceFiction);
                     session.setAttribute("listeShowsFantasy", listeShowsFantasy);
 
-                    session.setAttribute("cart", cart);
-                    session.setAttribute("favoris" , favoris);
+                    session.setAttribute("listeTemporaire", listFilmsPersonel);
+                    session.setAttribute("favoris", favoris);
                     dest = "index.jsp";
                 } else {
                     dest = "/WEB-INF/erreurConnection.jsp";

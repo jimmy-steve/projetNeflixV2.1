@@ -1,6 +1,6 @@
 package controleur.show;
 
-import dao.IItem;
+import dao.INetflixDao;
 import dao.NetflixDao;
 import modeles.Netflix;
 
@@ -36,7 +36,7 @@ public class DetailShow extends HttpServlet {
             dest="index.jsp";
         }
 
-        IItem showDao = new NetflixDao();
+        INetflixDao showDao = new NetflixDao();
         Netflix netflix = showDao.getShow(id);
         request.setAttribute("show", netflix);
         RequestDispatcher disp = request.getRequestDispatcher(dest);

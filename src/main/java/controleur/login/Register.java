@@ -22,8 +22,8 @@ import static utilitaire.GenerateurNombreSequentiel.genererNombre;
  * Il insère également dans la BD 1 user et 1 client
  *
  * @author Francis Lafontaine
- * @version V1
- * @since 01/09/2022
+ * @version V2
+ * @since 12/sept/2022
  */
 @WebServlet(name = "Register", value = "/Register")
 public class Register extends HttpServlet {
@@ -88,7 +88,7 @@ public class Register extends HttpServlet {
              * J'enregistre le client dans la base de donnée
              */
             client.setIdUser(user.getIdUser());
-            IItem clientDao = new ClientDao();
+            IclientDao clientDao = new ClientDao();
             clientDao.insert(client);
 
             /*
