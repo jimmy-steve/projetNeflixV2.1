@@ -35,6 +35,7 @@ public class Register extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String source = request.getParameter("source");
+        String forAdmin = request.getParameter("admin");
 
         String dest = "";
         if (source.equals("registerForms")) {
@@ -64,48 +65,81 @@ public class Register extends HttpServlet {
 
         if (!userDao.doExist(userName)) {
 
-
-
+            /*
+            Permet Hash du password
+             */
+            PasswordUtils passwordUtils = new PasswordUtils();
             /*
              * je créer un client typique
              */
             Client client = new Client(nom, prenom, adresse, email, telephone, genererNombre());
 
-            /*
-             * je créer un user typique
-             */
-
-            PasswordUtils passwordUtils = new PasswordUtils();
-            passwordUtils.hash(passWord);
-            User user = new User(userName, passwordUtils.getHashpassword(), passwordUtils.getSalt());
 
             /*
-             * j'enregistre le user dans la base de donnée
+             * je créer un abonnement pour le user mais pas pour un admin ----------NOT ADMIN
              */
-            userDao.insert(user);
+            if (!forAdmin.equals("forAdmin")) {
 
-            /*
-             * J'enregistre le client dans la base de donnée
-             */
-            client.setIdUser(user.getIdUser());
-            IclientDao clientDao = new ClientDao();
-            clientDao.insert(client);
+                /*
+                 * je créer un user typique
+                 */
 
-            /*
-             * je créer un abonnement pour le user
-             */
-            Abonnement abonnement = new Abonnement(client.getIdAbonnement(), typeAbonnement, 25.77, user.getIdUser());
+                passwordUtils.hash(passWord);
+                User user = new User(userName, passwordUtils.getHashpassword(), passwordUtils.getSalt());
 
-            /*
-             * J"enregistre l'abonnement fans la base donnée
-             */
-            AbonnementDao abonnementDao = new AbonnementDao();
-            abonnementDao.insert(abonnement);
+                /*
+                 * j'enregistre le user dans la base de donnée
+                 */
+                userDao.insert(user);
+
+                /*
+                 * J'enregistre le client dans la base de donnée et j'y ajoute le id relier a son user
+                 */
+                client.setIdUser(user.getIdUser());
+                IclientDao clientDao = new ClientDao();
+                clientDao.insert(client);
+
+
+                Abonnement abonnement = new Abonnement(client.getIdAbonnement(), typeAbonnement, 25.77, user.getIdUser());
+
+                /*
+                 * J"enregistre l'abonnement fans la base donnée
+                 */
+
+                AbonnementDao abonnementDao = new AbonnementDao();
+                abonnementDao.insert(abonnement);
+
+                /*
+                 * Sinon je créer un client admin----------------------------------ADMIN
+                 */
+            } else {
+
+                /*
+                 * je créer un user Admin
+                 */
+
+                passwordUtils.hash(passWord);
+                User user = new User(userName, passwordUtils.getHashpassword(), passwordUtils.getSalt(), true);
+
+                /*
+                 * j'enregistre le user dans la base de donnée
+                 */
+                userDao.insert(user);
+
+                /*
+                 * J'enregistre le client dans la base de donnée et j'y ajoute le id relier a son user
+                 */
+                client.setIdUser(user.getIdUser());
+                IclientDao clientDao = new ClientDao();
+                clientDao.insert(client);
+
+
+            }
 
             request.setAttribute("client", client);
             RequestDispatcher disp = request.getRequestDispatcher(dest);
             disp.forward(request, response);
-        }else {
+        } else {
             dest = "registerForms.jsp";
             RequestDispatcher disp = request.getRequestDispatcher(dest);
             disp.forward(request, response);

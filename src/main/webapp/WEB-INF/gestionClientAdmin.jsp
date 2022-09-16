@@ -64,7 +64,8 @@
 
                         <td>
                             <select class="form-control form-control-sm" id="typeAbonnementNew"
-                                    name="typeAbonnementNew">
+                                    name="typeAbonnementNew" >
+                                <option value="0">--Choix--</option>
                                 <option value="annuel">Annuel</option>
                                 <option value="3mois">3 mois</option>
                                 <option value="6mois">6 mois</option>
@@ -76,8 +77,9 @@
                         <td><input type="text" name="passWordNew" id="passWordNew" value=""/></td>
                         <td>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="admin">
-                                <label class="form-check-label text-light" for="admin">
+                                <input class="form-check-input" type="checkbox" name="admin" value="forAdmin" id="admin"
+                                       onclick="desactiveAbbonnement()">
+                                <label class="form-check-label text-light" for="admin" >
                                     Admin
                                 </label>
                             </div>
