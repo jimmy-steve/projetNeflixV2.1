@@ -67,6 +67,21 @@ public class Netflix {
         this.description = description;
     }
 
+    public Netflix(String type, String title, String director, String cast, String country, String dateAdded,
+                   int releaseYear, String rating, String duration, String listedIn, String description) {
+        this.type = type;
+        this.title = title;
+        this.director = director;
+        this.cast = cast;
+        this.country = country;
+        this.dateAdded = dateAdded;
+        this.releaseYear = releaseYear;
+        this.rating = rating;
+        this.duration = duration;
+        this.listedIn = listedIn;
+        this.description = description;
+    }
+
     public int getId() {
         return id;
     }

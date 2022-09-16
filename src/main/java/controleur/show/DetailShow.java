@@ -30,15 +30,24 @@ public class DetailShow extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         String source = request.getParameter("source");
 
+        Netflix netflix = null;
+        INetflixDao showDao = new NetflixDao();
+
+        if (source.equals("ajouterNewFilm")){
+            dest="WEB-INF/newShow.jsp";
+        }
         if (source.equals("admin")){
+            netflix = showDao.getShow(id);
+            request.setAttribute("show", netflix);
             dest="WEB-INF/ModifDetailShow.jsp";
         }else if(source.equals("client")){
+            netflix = showDao.getShow(id);
+            request.setAttribute("show", netflix);
             dest="index.jsp";
         }
-
-        INetflixDao showDao = new NetflixDao();
-        Netflix netflix = showDao.getShow(id);
-        request.setAttribute("show", netflix);
+//        INetflixDao showDao = new NetflixDao();
+//        Netflix netflix = showDao.getShow(id);
+//        request.setAttribute("show", netflix);
         RequestDispatcher disp = request.getRequestDispatcher(dest);
         disp.forward(request, response);
     }

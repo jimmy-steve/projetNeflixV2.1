@@ -43,4 +43,9 @@ public interface INetflixDao {
      * @return un show
      */
     Netflix getShow(int id);
+
+
+    boolean updateNetflix(int id,String title,String type,String director,String cast,String country,
+                          String dateAdded,int releaseYear,String rating,String duration,String listedIn,
+                          String description);
 }

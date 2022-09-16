@@ -21,6 +21,23 @@
 
 
 <div class="container-fluid">
+
+    <br>
+    <div class="row">
+
+
+        <div class="col-6 mx-auto">
+            <form action="DetailShow" name="formsNewFilm" method="get">
+                <input type="hidden" name="id" value=0>
+                <input type="hidden" name="source" value="ajouterNewFilm">
+                <input class="btn btn-danger btn-block" type="submit" value="AJOUTER UN NOUVEAU FILM"/>
+            </form>
+        </div>
+
+
+    </div>
+
+
     <div class="row">
 
 
@@ -54,23 +71,19 @@
                         <th scope="col">#</th>
                         <th scope="col">Type</th>
                         <th scope="col">Title</th>
-                        <%--                        <th scope="col">Director</th>--%>
-                        <%--                        <th scope="col">Cast</th>--%>
                         <th scope="col">Country</th>
                         <th scope="col">date Added</th>
-
                         <th scope="col">Release year</th>
                         <th scope="col">rating</th>
                         <th scope="col">duration</th>
                         <th scope="col">listed_in</th>
-                        <%--                        <th scope="col">description</th>--%>
                         <th scope="col">Action</th>
                     </tr>
                     </thead>
-                    <c:forEach var="netflix" items="${sessionScope.listShows}">
+
                     <tbody>
 
-
+                    <c:forEach var="netflix" items="${sessionScope.listShows}">
                         <tr>
 
                             <td>${netflix.showId}</td>
@@ -84,17 +97,16 @@
                             <td>${netflix.listedIn}</td>
 
                             <td>
-                                <form action="" name="forms2" method="post">
-                                    <a href="DetailShow?source=admin&id=${netflix.id}"
-                                       class=" btn btn-success ">Modifié</a>
-                                </form>
+                                <a href="DetailShow?source=admin&id=${netflix.id}"
+                                   class=" btn btn-success ">Modifié
+                                </a>
                             </td>
                         </tr>
-
+                    </c:forEach>
 
                     </tbody>
-                    </c:forEach>
                 </table>
+
             </div>
         </div>
 

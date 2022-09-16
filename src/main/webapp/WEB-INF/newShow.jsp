@@ -27,7 +27,7 @@
                 <div class="card-body ">
                     <h5 class="card-title">Detail d'un Show </h5>
                 </div>
-                <form action="UpdateShowsAdmin" method="post">
+                <form action="AddNewShow" method="post">
                     <table class="table table-striped table-hover table-bordered border-primary">
                         <thead>
                         <tr>
@@ -37,66 +37,66 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <th scope="row">Id :</th>
-                            <td>${show.showId}</td>
+                            <th scope="row">Show id :</th>
+                            <td><input type="text" id="showId" name="showId" value=""/></td>
                         </tr>
                         <tr>
                             <th scope="row">Type :</th>
-                            <td><input type="text" id="type" name="type" value="${show.type}"/></td>
+                            <td><input type="text" id="type" name="type" value=""/></td>
                         </tr>
                         <tr>
                             <th scope="row">Title :</th>
-                            <td><input type="text" id="title" name="title" value="${show.title}"/></td>
+                            <td><input type="text" id="title" name="title" value=""/></td>
                         </tr>
                         <tr>
                             <th scope="row">Director :</th>
-                            <td><input type="text" id="director" name="director" value="${show.director}"/></td>
+                            <td><input type="text" id="director" name="director" value=""/></td>
                         </tr>
                         <tr>
                             <th scope="row">Cast :</th>
-                            <td><input type="text" id="cast" name="cast" value="${show.cast}"/></td>
+                            <td><input type="text" id="cast" name="cast" value=""/></td>
                         </tr>
 
                         <tr>
                             <th scope="row">Country :</th>
-                            <td><input type="text" id="country" name="country" value="${show.country}"/></td>
+                            <td><input type="text" id="country" name="country" value=""/></td>
                         </tr>
 
                         <tr>
                             <th scope="row">Date Added :</th>
-                            <td><input type="text" id="datAdded" name="dateAdded" value="${show.dateAdded}"/></td>
+                            <td><input type="text" id="dateAdded" name="dateAdded" value=""/></td>
                         </tr>
                         <tr>
                             <th scope="row">Release year :</th>
-                            <td><input type="number" id="releaseYear" name="releaseYear" value="${show.releaseYear}"/></td>
+                            <td><input type="number" id="releaseYear" name="releaseYear" value=""/></td>
                         </tr>
 
                         <tr>
                             <th scope="row">Rating :</th>
-                            <td><input type="text" id="rating" name="rating" value="${show.rating}"/></td>
+                            <td><input type="text" id="rating" name="rating" value=""/></td>
                         </tr>
 
                         <tr>
                             <th scope="row">Duration :</th>
-                            <td><input type="text" id="duration" name="duration" value="${show.duration}"/></td>
+                            <td><input type="text" id="duration" name="duration" value=""/></td>
                         </tr>
 
                         <tr>
                             <th scope="row">Listed In:</th>
-                            <td><input type="text" id="listedIn" name="listedIn" value="${show.listedIn}"/></td>
+                            <td><input type="text" id="listedIn" name="listedIn" value=""/></td>
                         </tr>
 
 
                         <tr>
                             <th scope="row">Description :</th>
-                            <td><input type="text" id="description" name="description" value="${show.description}"/></td>
+                            <td><input type="text" id="description" name="description" value=""/></td>
                         </tr>
 
                         <tr class="text-center">
 
                             <td colspan="2" class="text-center">
                                 <a class="btn btn-danger" href="GestionAdmin?src=show">Retour</a>
-                                <input type="hidden" name="id" value="${show.id}">
+                                <input type="hidden" name="id" value="">
                                 <button class="btn btn-danger" type="submit">Sauvegarder</button>
                             </td>
                         </tr>

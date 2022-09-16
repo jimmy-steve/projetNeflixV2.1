@@ -1,5 +1,6 @@
 package dao;
 
+import modeles.Client;
 import modeles.Netflix;
 
 import javax.persistence.EntityManager;
@@ -73,6 +74,76 @@ public class NetflixDao implements INetflixDao {
             return show;
         } finally {
             entityManager.close();
+        }
+    }
+
+    @Override
+    public boolean updateNetflix(int id, String title, String type, String director, String cast,
+                                 String country, String dateAdded, int releaseYear, String rating,
+                                 String duration, String listedIn, String description) {
+        EntityManager entityManager = null;
+        entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+
+        /*
+         * faire un try catch pour gerer les probleme lors de la transaction
+         */
+
+        try {
+            entityManager = entityManagerFactory.createEntityManager();
+            entityManager.getTransaction().begin();
+
+            /*
+             * recherche une personne selon son id
+             */
+
+            Netflix netflix = entityManager.find(Netflix.class, id);
+
+            if (!netflix.getTitle().equals(title)){
+                netflix.setTitle(title);
+            }
+            if (!netflix.getType().equals(type)){
+                netflix.setType(type);
+            }
+            if (!netflix.getDirector().equals(director)){
+                netflix.setDirector(director);
+            }
+            if ((!netflix.getCast().equals(cast))){
+                netflix.setCast(cast);
+            }
+            if(!netflix.getCountry().equals(country)){
+                netflix.setCountry(country);
+            }
+            if (!netflix.getDateAdded().equals(dateAdded)){
+                netflix.setDateAdded(dateAdded);
+            }
+            if (netflix.getReleaseYear() != releaseYear){
+                netflix.setReleaseYear(releaseYear);
+            }
+            if (!netflix.getRating().equals(rating)){
+                netflix.setRating(rating);
+            }
+            if (!netflix.getDuration().equals(duration)){
+                netflix.setDuration(duration);
+            }
+            if (!netflix.getListedIn().equals(listedIn)){
+                netflix.setListedIn(listedIn);
+            }
+            if (!netflix.getDescription().equals(description)){
+                netflix.setDescription(description);
+            }
+
+            entityManager.merge(netflix);
+            entityManager.persist(netflix);
+            entityManager.getTransaction().commit();//dans L'etat de persistent
+            System.out.println("Réussi");
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();//----------------reviens en arrière
+            return false;
+        } finally {
+            entityManager.close();//dans l'etat detached
         }
     }
 
