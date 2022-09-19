@@ -17,7 +17,7 @@
 <br><h1 class="text-center text-light"> Erreur de connection</h1><br>
 <br><br>
 <div class="alert alert-danger container" role="alert">
-    <h3 class="text-center" style="color: red">Bravo !!!! Le système à planté .....C'est un erreur de saisie de mot de passe ou de de username<br><!-- comment --></h3>
+    <h3 class="text-center" style="color: red">Erreur 404 ...C'est un erreur de saisie de mot de passe ou de de username<br></h3>
 
 </div>
 <br>

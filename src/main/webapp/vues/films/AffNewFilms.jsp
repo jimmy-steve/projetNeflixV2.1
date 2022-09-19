@@ -11,20 +11,6 @@
 <html>
 <head>
     <title>Afficher new Film</title>
-
-
-
-    <script>
-        /* Set the width of the side navigation to 250px */
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "500px";
-        }
-
-        /* Set the width of the side navigation to 0 */
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-        }
-    </script>
     <%@include file="/includes/head.jsp" %>
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/includes/styleIndex.css">
 </head>
@@ -70,19 +56,9 @@
 
                 </div>
 
-
-                <div class="col-4 mt-4">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                        <label class="form-check-label text-light" for="inlineCheckbox1">Francais</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <label class="form-check-label text-light" for="inlineCheckbox2">Anglais</label>
-                    </div>
-                </div>
                 <div class=" mt-4">
-                    <input type="hidden" name="action" value="aucune">
+                    <input type="hidden" name="action" value="PasAdmin">
+                    <input type="hidden" name="currentPage" value="${requestScope.currentPage+1}">
                     <button type="submit" class="btn btn-danger">Appliquer</button>
                 </div>
 

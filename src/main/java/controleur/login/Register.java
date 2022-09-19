@@ -41,7 +41,7 @@ public class Register extends HttpServlet {
         if (source.equals("registerForms")) {
             dest = "formulaireLogin.jsp";
         } else if (source.equals("gestionClientAdmin")) {
-            dest = "/WEB-INF/gestionClientAdmin.jsp";
+            dest = "/WEB-INF/Connecter.jsp";
         }
 
         String prenom = request.getParameter("prenomNew");

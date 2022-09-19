@@ -13,16 +13,13 @@
 
 
                         <div class="container-fluid">
-                            <h5 class="mb-3">
-                                <h2 class="text-light">
+                            <h3 class="mb-3 text-center">
                                     Liste de Favoris
-                                </h2>
-                            </h5>
+                            </h3>
                             <hr>
 
                             <div class="d-flex justify-content-between align-items-center mb-4 text-light">
                                 <div>
-                                    <p class="mb-1">test de detail et description</p>
                                     <p class="mb-0">
                                         You have
                                         <span class="badge badge-warning">

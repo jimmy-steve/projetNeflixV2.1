@@ -1,4 +1,4 @@
-package controleur;
+package controleur.favoris;
 
 import dao.*;
 import modeles.Client;

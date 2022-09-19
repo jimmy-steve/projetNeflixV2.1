@@ -41,54 +41,54 @@
                             <td>${show.showId}</td>
                         </tr>
                         <tr>
-                            <th scope="row">Type :</th>
+                            <th scope="row"><label for="type">Type :</label></th>
                             <td><input type="text" id="type" name="type" value="${show.type}"/></td>
                         </tr>
                         <tr>
-                            <th scope="row">Title :</th>
+                            <th scope="row"><label for="title">Title :</label></th>
                             <td><input type="text" id="title" name="title" value="${show.title}"/></td>
                         </tr>
                         <tr>
-                            <th scope="row">Director :</th>
+                            <th scope="row"><label for="director">Director :</label></th>
                             <td><input type="text" id="director" name="director" value="${show.director}"/></td>
                         </tr>
                         <tr>
-                            <th scope="row">Cast :</th>
+                            <th scope="row"><label for="cast">Cast :</label></th>
                             <td><input type="text" id="cast" name="cast" value="${show.cast}"/></td>
                         </tr>
 
                         <tr>
-                            <th scope="row">Country :</th>
+                            <th scope="row"><label for="country">Country :</label></th>
                             <td><input type="text" id="country" name="country" value="${show.country}"/></td>
                         </tr>
 
                         <tr>
-                            <th scope="row">Date Added :</th>
-                            <td><input type="text" id="datAdded" name="dateAdded" value="${show.dateAdded}"/></td>
+                            <th scope="row"><label for="dateAdded">Date Added :</label></th>
+                            <td><input type="text" id="dateAdded" name="dateAdded" value="${show.dateAdded}"/></td>
                         </tr>
                         <tr>
-                            <th scope="row">Release year :</th>
+                            <th scope="row"><label for="releaseYear">Release year :</label></th>
                             <td><input type="number" id="releaseYear" name="releaseYear" value="${show.releaseYear}"/></td>
                         </tr>
 
                         <tr>
-                            <th scope="row">Rating :</th>
+                            <th scope="row"><label for="rating">Rating :</label></th>
                             <td><input type="text" id="rating" name="rating" value="${show.rating}"/></td>
                         </tr>
 
                         <tr>
-                            <th scope="row">Duration :</th>
+                            <th scope="row"><label for="duration">Duration :</label></th>
                             <td><input type="text" id="duration" name="duration" value="${show.duration}"/></td>
                         </tr>
 
                         <tr>
-                            <th scope="row">Listed In:</th>
+                            <th scope="row"><label for="listedIn">Listed In:</label></th>
                             <td><input type="text" id="listedIn" name="listedIn" value="${show.listedIn}"/></td>
                         </tr>
 
 
                         <tr>
-                            <th scope="row">Description :</th>
+                            <th scope="row"><label for="description">Description :</label></th>
                             <td><input type="text" id="description" name="description" value="${show.description}"/></td>
                         </tr>
 

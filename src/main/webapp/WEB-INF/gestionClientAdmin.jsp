@@ -31,31 +31,40 @@
 
                 <thead>
                 <tr>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Email</th>
-                    <th>Adresse</th>
-                    <th>Telephone</th>
+                    <th><label for="nomNew">Nom</label></th>
+                    <th><label for="prenomNew">Prénom</label></th>
+                    <th><label for="emailNew">Email</label></th>
+                    <th><label for="adresseNew">Adresse</label></th>
+                    <th><label for="telephoneNew">Telephone</label></th>
                 </tr>
                 </thead>
                 <tbody>
                 <form action="Register" method="post">
                     <tr>
 
-                        <td><input type="text" name="nomNew" id="nomNew" value=""/></td>
-                        <td><input type="text" name="prenomNew" id="prenomNew" value=""/></td>
-                        <td><input type="text" name="emailNew" id="emailNew" value=""/></td>
-                        <td><input type="text" name="adresseNew" id="adresseNew" value=""/></td>
-                        <td><input type="text" name="telephoneNew" id="telephoneNew" value=""/></td>
+                        <td><input type="text" name="nomNew" id="nomNew" value="" required minlength="2"
+                                   maxlength="45"/>
+                        </td>
+                        <td><input type="text" name="prenomNew" id="prenomNew" value="" required minlength="2"
+                                   maxlength="45"/>
+                        </td>
+                        <td><input type="text" name="emailNew" id="emailNew" value="" required minlength="8"
+                                   maxlength="45"/>
+                        </td>
+                        <td><input type="text" name="adresseNew" id="adresseNew" value="" required minlength="2"
+                                   maxlength="45"/>
+                        </td>
+                        <td><input type="text" name="telephoneNew" id="telephoneNew" value="" required/>
+                        </td>
 
 
                     </tr>
 
 
                     <tr>
-                        <th>Type abonnement</th>
-                        <th>UserName</th>
-                        <th>Password</th>
+                        <th><label for="typeAbonnementNew">Type abonnement</label></th>
+                        <th><label for="userNameNew">UserName</label></th>
+                        <th><label for="passWordNew">Password</label></th>
                         <th>Admin</th>
                         <th>Action</th>
                     </tr>
@@ -73,18 +82,30 @@
 
                         </td>
 
-                        <td><input type="text" name="userNameNew" id="userNameNew" value=""/></td>
-                        <td><input type="text" name="passWordNew" id="passWordNew" value=""/></td>
+                        <td><input type="text" name="userNameNew" id="userNameNew" value="" required minlength="2"
+                                   maxlength="45"/></td>
+                        <td><input type="password" name="passWordNew" id="passWordNew" value="" required minlength="5"
+                                   maxlength="45"/></td>
                         <td>
+
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="admin" value="forAdmin" id="admin"
+                                <input class="form-check-input" type="radio" name="admin" id="admin" value="forAdmin"
                                        onclick="desactiveAbbonnement()">
-                                <label class="form-check-label text-light" for="admin" >
+                                <label class="form-check-label text-light" for="admin">
                                     Admin
                                 </label>
                             </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="admin" id="reg" checked>
+                                <label class="form-check-label text-light" for="reg">
+                                    Membre Régulier
+                                </label>
+                            </div>
+
+
                         </td>
                         <td>
+                            <input type="hidden" name="forAdmin" value="null">
                             <input type="hidden" name="source" value="gestionClientAdmin">
                             <input class="btn btn-danger " type="submit" value="AJOUTER"/>
                         </td>
@@ -139,7 +160,7 @@
                         <tbody>
                         <form action="UpdateClient" method="post">
                             <tr>
-                                <th scope="row">Id Client :</th>
+                                <th scope="row"><label for="id">Id Client :</label></th>
                                 <td>
                                     <input type="number" id="id" name="id" disabled="disabled"
                                            value="${requestScope.client.idClient}"/>
@@ -156,13 +177,14 @@
                             </tr>
                             <tr>
                                 <th scope="row"><label for="email">Email :</label></th>
-                                <td><input type="email" id="email" name="email" value="${requestScope.client.email}"/>
+                                <td><input type="email" id="email" name="email" value="${requestScope.client.email} "/>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row"><label for="adresse">Adresse :</label></th>
                                 <td><input type="text" id="adresse" name="adresse"
-                                           value="${requestScope.client.adresse}"/></td>
+                                           value="${requestScope.client.adresse}"/>
+                                </td>
                             </tr>
                             <tr>
                                 <th scope="row"><label for="telephone">Téléphone :</label></th>
@@ -173,7 +195,7 @@
 
 
                             <tr class="bg-dark">
-                                <th scope="row" class="text-light">IdUser :</th>
+                                <th scope="row" class="text-light"><label for="idUser">IdUser :</label></th>
                                 <td class="text-light">
                                     <input disabled="disabled" type="number" id="idUser" name="idUser"
                                            value="${requestScope.user.idUser}"/>
@@ -182,7 +204,8 @@
                             <tr class="bg-dark">
                                 <th scope="row" class="text-light"><label for="userName">Username:</label></th>
                                 <td><input type="text" id="userName" name="userName"
-                                           value="${requestScope.user.username}"/></td>
+                                           value="${requestScope.user.username}"/>
+                                </td>
                             </tr>
 
 

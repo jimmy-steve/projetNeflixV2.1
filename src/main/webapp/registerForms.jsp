@@ -134,7 +134,7 @@
                     <div class="form-group">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                            <label class="text-light" class="form-check-label" for="invalidCheck">
+                            <label class="form-check-label text-light" for="invalidCheck">
                                 Agree to terms and conditions
                             </label>
                             <div class="invalid-feedback">

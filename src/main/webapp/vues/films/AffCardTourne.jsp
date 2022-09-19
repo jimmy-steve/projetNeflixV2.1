@@ -12,21 +12,6 @@
 <head>
     <title>Affichage de card qui tourne</title>
     <%@include file="/includes/head.jsp" %>
-    <%--    on dirais que le liens ne fonctione pas--%>
-    <%--    <link type="text/css" rel="stylesheet" href="../../style3.css">--%>
-
-
-    <script>
-        /* Set the width of the side navigation to 250px */
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "500px";
-        }
-
-        /* Set the width of the side navigation to 0 */
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-        }
-    </script>
     <style>
 
 

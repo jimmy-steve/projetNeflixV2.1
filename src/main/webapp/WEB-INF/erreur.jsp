@@ -17,7 +17,7 @@
 <br><h1 class="text-center text-light"> NumberFormatException</h1><br>
 <br><br>
 <div class="alert alert-danger container" role="alert">
-    <h3 class="text-center" style="color: red">Bravo !!!! Le système à planté .......C'est un erreur de saisie il suffit d'entrer les bonnes informations<br><!-- comment --></h3>
+    <h3 class="text-center" style="color: red">Erreur 404.......C'est un erreur de saisie il suffit d'entrer les bonnes informations<br></h3>
 
 </div>
 <br>

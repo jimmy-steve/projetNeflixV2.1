@@ -4,19 +4,6 @@
 <html>
 <head>
     <title>Home Page</title>
-
-
-    <script>
-        /* Set the width of the side navigation to 250px */
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "600px";
-        }
-
-        /* Set the width of the side navigation to 0 */
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-        }
-    </script>
     <%@include file="/includes/head.jsp" %>
     <link type="text/css" rel="stylesheet" href="includes/styleIndex.css">
 </head>
@@ -97,15 +84,11 @@
                             <td>${show.listedIn}</td>
                         </tr>
 
-
                         <tr class="text-center">
-
                             <td colspan="2" class="text-center">
                                 <a href="AjouterArticlePanier?id=${show.id}"
                                    class=" btn btn-success ">Ajouter</a>
                             </td>
-
-
                         </tr>
 
 
