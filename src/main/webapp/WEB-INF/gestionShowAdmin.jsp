@@ -55,7 +55,7 @@
                             Abonnement</a>
                     </li>
                     <li class="nav-item mb-4 mr-2">
-                        <a class="nav-link btn btn-outline-warning" href="GestionAdmin?src=show"> Gestion Show </a>
+                        <a class="nav-link btn btn-outline-warning" href="GestionAdmin?src=show&recordsPerPage=75"> Gestion Show </a>
                     </li>
                 </ul>
             </nav>
@@ -83,7 +83,7 @@
 
                     <tbody>
 
-                    <c:forEach var="netflix" items="${sessionScope.listShows}">
+                    <c:forEach var="netflix" items="${requestScope.listShows}">
                         <tr>
 
                             <td>${netflix.showId}</td>
@@ -107,8 +107,8 @@
                     </tbody>
                 </table>
 
+
             </div>
-        </div>
 
 
     </div>

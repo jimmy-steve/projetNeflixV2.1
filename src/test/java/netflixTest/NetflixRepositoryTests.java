@@ -11,8 +11,8 @@ public class NetflixRepositoryTests {
 
     @Test
     public void testInsertBase() {
-        Netflix showTest = new Netflix("Test","Film","Title","director","cast",
-                "country","date_added", 2024,"rating","duration",
+        Netflix showTest = new Netflix("Test", "Film", "Title", "director", "cast",
+                "country", "date_added", 2024, "rating", "duration",
                 "listed in", "description");
         INetflixDao showDao = new NetflixDao();
         showDao.insert(showTest);
@@ -58,7 +58,7 @@ public class NetflixRepositoryTests {
         List<Netflix> shows = showDao.getListNouveaute();
 
         for (Netflix tmp : shows
-             ) {
+        ) {
             System.out.println(tmp);
         }
     }
@@ -81,5 +81,11 @@ public class NetflixRepositoryTests {
         }
     }
 
+    @Test
+    public void testGetNumberOfRow() {
+        INetflixDao iNetflixDao = new NetflixDao();
+        int numberOfRow = iNetflixDao.getNumberOfRows();
+        System.out.println("Il y a " + numberOfRow + " lignes");
+    }
 
 }

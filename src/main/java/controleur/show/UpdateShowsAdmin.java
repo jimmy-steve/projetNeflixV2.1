@@ -46,7 +46,7 @@ public class UpdateShowsAdmin extends HttpServlet {
         /*
          Je test un film et je l'affiche dans la console
          */
-        Netflix newNetflix = new Netflix(title, type, director, cast, country, dateAdded, releaseYear, rating,
+        Netflix newNetflix = new Netflix(type, title, director, cast, country, dateAdded, releaseYear, rating,
                 duration, listedIn, description);
         System.out.println(newNetflix);
 

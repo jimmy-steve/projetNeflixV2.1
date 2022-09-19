@@ -2,6 +2,14 @@ package modeles;
 
 import javax.persistence.*;
 
+/**
+ * Name : Netflix
+ * Classe POJO pour les films
+ *
+ * @author Francis Lafontaine
+ * @version V1
+ * @since 18/septembre/2022
+ */
 @Entity
 public class Netflix {
     @Id
@@ -24,14 +32,33 @@ public class Netflix {
     private String listedIn;
     private String description;
 
+    /**
+     * Constructeur vide
+     */
     public Netflix() {
     }
 
-    public Netflix(String showId, int releaseYear ) {
+    public Netflix(String showId, int releaseYear) {
         this.showId = showId;
         this.releaseYear = releaseYear;
     }
 
+    /**
+     * Constructeur avec paramètre
+     *
+     * @param id          du film
+     * @param title       du film
+     * @param type        un type de film ou Show
+     * @param director    le directeur du film
+     * @param cast        le casting du film
+     * @param country     le pays d'origine du film
+     * @param dateAdded   la date ajouter du film
+     * @param releaseYear l'année qu'a sortie le film
+     * @param rating      le reting du film
+     * @param duration    la duration du film
+     * @param listedIn    les catégorie dans lequelle peut etre lister
+     * @param description la description du film
+     */
     public Netflix(int id, String showId, String type, String title,
                    String director, String cast, String country, String dateAdded,
                    int releaseYear, String rating, String duration, String listedIn,

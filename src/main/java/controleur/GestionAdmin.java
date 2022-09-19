@@ -51,10 +51,11 @@ public class GestionAdmin extends HttpServlet {
             dest = "/WEB-INF/gestionAbonnementAdmin.jsp";
         } else if (source.equals("show")) {
             dest = "/WEB-INF/gestionShowAdmin.jsp";
-            NetflixDao showDao = new NetflixDao();
-            List<Netflix> listShows = showDao.getList50();
+            NetflixDao netflixDao = new NetflixDao();
 
-            session.setAttribute("listShows", listShows);
+            List<Netflix> listShows = netflixDao.getList50();
+
+            request.setAttribute("listShows", listShows);
         }
         RequestDispatcher disp = request.getRequestDispatcher(dest);
         disp.forward(request, response);

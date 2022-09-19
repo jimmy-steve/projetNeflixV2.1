@@ -9,6 +9,14 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Name : AffTopFilm
+ * Permet d'aller chercher dans la bd une liste de nouveauté
+ *
+ * @author Francis Lafontaine
+ * @version V1
+ * @since 18/septembre/2022
+ */
 @WebServlet(name = "AffTopFilms", value = "/AffTopFilms")
 public class AffTopFilms extends HttpServlet {
     @Override

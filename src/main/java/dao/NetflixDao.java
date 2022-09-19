@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @author Francis Lafontaine
  * @version V1
- * @since 01/09/2022
+ * @since 18/septembre/2022
  */
 
 public class NetflixDao implements INetflixDao {
@@ -77,6 +77,24 @@ public class NetflixDao implements INetflixDao {
         }
     }
 
+    /**
+     * Name : updateNetflix
+     * Permet de faire l'update d'un films dans la bd
+     *
+     * @param id          du film
+     * @param title       du film
+     * @param type        un type de film ou Show
+     * @param director    le directeur du film
+     * @param cast        le casting du film
+     * @param country     le pays d'origine du film
+     * @param dateAdded   la date ajouter du film
+     * @param releaseYear l'année qu'a sortie le film
+     * @param rating      le reting du film
+     * @param duration    la duration du film
+     * @param listedIn    les catégorie dans lequelle peut etre lister
+     * @param description la description du film
+     * @return true si l'update a été effectuer
+     */
     @Override
     public boolean updateNetflix(int id, String title, String type, String director, String cast,
                                  String country, String dateAdded, int releaseYear, String rating,
@@ -99,39 +117,54 @@ public class NetflixDao implements INetflixDao {
 
             Netflix netflix = entityManager.find(Netflix.class, id);
 
-            if (!netflix.getTitle().equals(title)){
+
                 netflix.setTitle(title);
-            }
-            if (!netflix.getType().equals(type)){
                 netflix.setType(type);
-            }
-            if (!netflix.getDirector().equals(director)){
                 netflix.setDirector(director);
-            }
-            if ((!netflix.getCast().equals(cast))){
                 netflix.setCast(cast);
-            }
-            if(!netflix.getCountry().equals(country)){
                 netflix.setCountry(country);
-            }
-            if (!netflix.getDateAdded().equals(dateAdded)){
                 netflix.setDateAdded(dateAdded);
-            }
-            if (netflix.getReleaseYear() != releaseYear){
                 netflix.setReleaseYear(releaseYear);
-            }
-            if (!netflix.getRating().equals(rating)){
                 netflix.setRating(rating);
-            }
-            if (!netflix.getDuration().equals(duration)){
                 netflix.setDuration(duration);
-            }
-            if (!netflix.getListedIn().equals(listedIn)){
                 netflix.setListedIn(listedIn);
-            }
-            if (!netflix.getDescription().equals(description)){
                 netflix.setDescription(description);
-            }
+
+                ///--------------------------------------------------- probleme lorsque le champ est vide
+
+//            if (!netflix.getTitle().equals(title)) {
+//                netflix.setTitle(title);
+//            }
+//            if (!netflix.getType().equals(type)) {
+//                netflix.setType(type);
+//            }
+//            if (!netflix.getDirector().equals(director) || netflix.getDirector() == null) {
+//                netflix.setDirector(director);
+//            }
+//            if ((!netflix.getCast().equals(cast))) {
+//                netflix.setCast(cast);
+//            }
+//            if (!netflix.getCountry().equals(country)) {
+//                netflix.setCountry(country);
+//            }
+//            if (!netflix.getDateAdded().equals(dateAdded)) {
+//                netflix.setDateAdded(dateAdded);
+//            }
+//            if (netflix.getReleaseYear() != releaseYear) {
+//                netflix.setReleaseYear(releaseYear);
+//            }
+//            if (!netflix.getRating().equals(rating)) {
+//                netflix.setRating(rating);
+//            }
+//            if (!netflix.getDuration().equals(duration)) {
+//                netflix.setDuration(duration);
+//            }
+//            if (!netflix.getListedIn().equals(listedIn)) {
+//                netflix.setListedIn(listedIn);
+//            }
+//            if (!netflix.getDescription().equals(description)) {
+//                netflix.setDescription(description);
+//            }
 
             entityManager.merge(netflix);
             entityManager.persist(netflix);
@@ -145,6 +178,66 @@ public class NetflixDao implements INetflixDao {
         } finally {
             entityManager.close();//dans l'etat detached
         }
+    }
+
+    /**
+     * Name : finNetfixShow
+     * Permet d'aller chercher toute les film dans la film avec 2 critères
+     *
+     * @param currentPage    la page courante
+     * @param recordsPerPage le nombre de ligne voulu a l'affichage
+     * @return une liste de films
+     */
+    @Override
+    public List<Netflix> findNetflixShow(int currentPage, int recordsPerPage) {
+        EntityManager entityManager = null;
+        List<Netflix> list = null;
+
+        int start = currentPage * recordsPerPage - recordsPerPage;
+        try {
+
+            entityManager = entityManagerFactory.createEntityManager();
+            entityManager.getTransaction().begin();
+            Query query = entityManager.createNativeQuery("SELECT * FROM Netflix LIMIT :A, :B", Netflix.class).
+                    setParameter("A", start).setParameter("B", recordsPerPage);
+
+            list = query.getResultList();
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+            return list;
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    /**
+     * Name : getNumberOfRows
+     * Permet d'aller chercher dans la bd le nombre d'enregistrement total
+     *
+     * @return un int qui est le total
+     */
+    @Override
+    public int getNumberOfRows() {
+        EntityManager entityManager = null;
+        int numOfRows = 0;
+
+        try {
+            entityManager = entityManagerFactory.createEntityManager();
+            entityManager.getTransaction().begin();
+            Query query = entityManager.createNativeQuery("SELECT * FROM netflix;", Netflix.class);
+            numOfRows = query.getResultList().size();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+            return numOfRows;
+        } finally {
+            entityManager.close();
+        }
+        return numOfRows;
     }
 
     /**
@@ -385,6 +478,13 @@ public class NetflixDao implements INetflixDao {
         }
     }
 
+    /**
+     * Name : getList50
+     * Permet d'aller chercher dans la bd un liste de 50 film dans la classe fantasy
+     * pour un traitement a plus petite échelle sans avoir les 8000 enregistrement
+     *
+     * @return une list de 50 film de la base de donnée
+     */
     public List<Netflix> getList50() {
         List<Netflix> listTop50 = new ArrayList<>();
         EntityManager entityManager = null;
