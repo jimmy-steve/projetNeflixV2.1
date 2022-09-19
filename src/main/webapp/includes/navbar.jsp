@@ -164,6 +164,7 @@
                             <input type="hidden" name="type" value="all">
                             <input type="hidden" id="action" name="action" value="PasAdmin">
                             <input type="hidden" name="pays" value="all">
+                            <input type="hidden" name="currentPage" value="2">
                             <a>
                                 <input class="nav-link text-light btn " style="margin-right: 10px" type="submit"
                                        value="Liste "/>

@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import static java.lang.Math.round;
+
 /**
  * Name: SHowCtr
  * Servlet permettant de faire afficher une liste de film pour le client regulier
@@ -35,6 +37,7 @@ public class ShowCtr extends HttpServlet {
         String option1 = request.getParameter("pays");
         String action = request.getParameter("action");
         String type = request.getParameter("type");
+        int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 
         System.out.println(option1);
         NetflixDao showDao = new NetflixDao();
@@ -56,6 +59,27 @@ public class ShowCtr extends HttpServlet {
             listeShows = showDao.getAllShows();
         }
 
+        int rowPerPage = 20;
+
+        if(listeShows != null){
+            int nbrPage = listeShows.size()/rowPerPage;
+            request.setAttribute("rowPerPage", rowPerPage);
+            request.setAttribute("nbrPage", nbrPage);
+            request.setAttribute("currentPage", currentPage);
+            int end;
+
+            int start = currentPage * rowPerPage - rowPerPage;
+            if (start+rowPerPage > listeShows.size()){
+                end = listeShows.size()-1;
+            } else {
+                end = start + rowPerPage;
+            }
+            List<Netflix> smallList = listeShows.subList(start, end);
+            request.setAttribute("smallList", smallList);
+
+        } else {
+            dest = "/WEB-INF/erreur.jsp";
+        }
 
         request.setAttribute("listeShows", listeShows);
 

@@ -45,15 +45,15 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="show" items="${requestScope.listeShows}">
+                    <c:forEach var="show" items="${requestScope.smallList}">
                         <form action="" name="forms2" method="post">
                             <tr>
 
                                 <td>${show.showId}</td>
                                 <td>${show.type}</td>
                                 <td>${show.title}</td>
-<%--                                <td>${show.director}</td>--%>
-<%--                                <td>${show.cast}</td>--%>
+                                    <%--                                <td>${show.director}</td>--%>
+                                    <%--                                <td>${show.cast}</td>--%>
                                 <td>${show.country}</td>
 
                                 <td>${show.dateAdded}</td>
@@ -61,7 +61,7 @@
                                 <td>${show.rating}</td>
                                 <td>${show.duration}</td>
                                 <td>${show.listedIn}</td>
-<%--                                <td>${show.description}</td>--%>
+                                    <%--                                <td>${show.description}</td>--%>
 
 
                                 <td>
@@ -76,6 +76,31 @@
                     </tbody>
 
                 </table>
+                <p>
+                    <c:if test="${requestScope.currentPage > 1}"><form action="ShowCtr" name="formsPrevious" method="post">
+
+                    <input type="hidden" name="type" value="all">
+                    <input type="hidden" name="action" value="PasAdmin">
+                    <input type="hidden" name="pays" value="all">
+                    <input type="hidden" name="currentPage" value="${requestScope.currentPage-1}">
+                    <a>
+                        <input class="text-black btn " type="submit" value="Page d'avant">
+                    </a>
+                    </form></c:if>
+                    Page actuelle : ${requestScope.currentPage}
+                    <c:if test="${requestScope.currentPage != requestScope.nbrPage}">
+                        <form action="ShowCtr" name="formsNext" method="post">
+
+                            <input type="hidden" name="type" value="all">
+                            <input type="hidden" name="action" value="PasAdmin">
+                            <input type="hidden" name="pays" value="all">
+                            <input type="hidden" name="currentPage" value="${requestScope.currentPage+1}">
+                            <a>
+                                <input class="text-black btn" type="submit" value="Page suivante">
+                            </a>
+                        </form>
+                    </c:if>
+                </p>
             </div>
         </div>
 
