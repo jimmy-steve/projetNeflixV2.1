@@ -171,7 +171,8 @@
 
                                 <div class="col">
                                     <div class=" mt-4">
-                                        <input type="hidden" name="action" value="aucune">
+                                        <input type="hidden" name="action" value="PasAdmin">
+                                        <input type="hidden" name="currentPage" value="${requestScope.currentPage+1}">
                                         <button type="submit" class="btn btn-danger">Appliquer</button>
                                     </div>
                                 </div>
