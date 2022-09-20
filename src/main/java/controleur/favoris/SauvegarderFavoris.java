@@ -28,27 +28,20 @@ public class SauvegarderFavoris extends HttpServlet {
         String dest = "index.jsp";
 
         HttpSession session = request.getSession();
-        Vector  listFavoris = (Vector) session.getAttribute("listeFavoris");
-
-//        long numeroClient = Long.parseLong(request.getParameter("id"));
-
-//        Client client = (Client) ClientDao.getClient(numeroClient);
-//        User user = UserDao.getUser(client.getIdUser());
-//
-//        System.out.println(user);
-//        System.out.println(client);
-//
-//        request.setAttribute("user", user);
-//        request.setAttribute("client", client);
-
+        Vector listFavoris = (Vector) session.getAttribute("listeFavoris");
 
         IfavorisDao ifavorisDao = new FavorisDao();
         boolean resultat = ifavorisDao.SaveListFavoris(listFavoris);
 
-        if (resultat) {
-            System.out.println("La liste a été effectuer avec succès");
-        }
 
+        String confirmationFavoris = "La liste a été mise a jour avec succès";
+        request.setAttribute("confirmationFavoris", confirmationFavoris);
+        request.setAttribute("listFavoris", listFavoris);
+
+        if (resultat) {
+            System.out.println("La liste a été mise a jour avec succès");
+
+        }
 
         RequestDispatcher disp = request.getRequestDispatcher(dest);
         disp.forward(request, response);

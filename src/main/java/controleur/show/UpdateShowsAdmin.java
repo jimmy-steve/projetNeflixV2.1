@@ -59,7 +59,7 @@ public class UpdateShowsAdmin extends HttpServlet {
                 rating, duration, listedIn, description);
 
 
-        request.setAttribute("client", newNetflix);
+        request.setAttribute("netflix", newNetflix);
         RequestDispatcher disp = request.getRequestDispatcher(dest);
         disp.forward(request, response);
 

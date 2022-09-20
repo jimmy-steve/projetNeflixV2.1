@@ -58,6 +58,9 @@ public class AjouterArticlePanier extends HttpServlet {
         favoris.getListFilms().add(netflix);
 
 
+        String confirmationFavoris = "La liste a été mise a jour avec succès";
+        request.setAttribute("confirmationFavoris", confirmationFavoris);
+
         session.setAttribute("favoris", favoris);
 
         session.setAttribute("listeTemporaire", favoris.getListFilms());

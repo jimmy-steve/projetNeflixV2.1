@@ -36,7 +36,6 @@ public class DeleteFavoris extends HttpServlet {
             System.out.println("Supression effectuer");
         }
 
-
         favoris.setQuantite(favoris.getQuantite()-1);
         List<Netflix> list = favoris.getListFilms();
         //on récupère l'indice de l'item à supprimer
@@ -45,10 +44,9 @@ public class DeleteFavoris extends HttpServlet {
         int d = Integer.parseInt(del);
         list.remove(d);
 
-
+        String suppressionFavoris = "le film a été supprimer avec succèes";
+        request.setAttribute("suppressionFavoris", suppressionFavoris);
         session.setAttribute("listeTemporaire", favoris.getListFilms());
-
-
         session.setAttribute("favoris", favoris);
 
         RequestDispatcher disp = request.getRequestDispatcher(dest);

@@ -15,13 +15,39 @@
 <body style="background-color: black">
 <%@include file="/includes/navbarAdmin.jsp" %>
 <br>
-<%--<div class="alert alert-secondary alert-dismissible fade show container"--%>
-<%--     style="margin-top: 150px" role="alert">--%>
-<%--    <strong> Bonjour ${user.username} </strong>, vous êtes maintenant connecter--%>
-<%--    <button type="button" class="close" data-dismiss="alert" aria-label="Close">--%>
-<%--        <span aria-hidden="true">&times;</span>--%>
-<%--    </button>--%>
-<%--</div>--%>
+<c:if test="${client != null}">
+    <br><br><br><br>
+    <div class="alert alert-success alert-dismissible fade show container" role="alert">
+        <h3 class="text-center"><strong>Félicitation ! ! </strong>
+            Votre client ayant comme nom ${client.prenom} ${client.nom}
+            et comme Id ${client.idClient} a été sauvegardé avec succès</h3>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</c:if>
+
+<c:if test="${netflix != null}">
+    <br><br><br>
+    <div class="alert alert-success alert-dismissible fade show container mt-5" role="alert">
+        <h3 class="text-center"><strong>Succès ! ! </strong>
+            Le film ou l'émission ayant comme titre : <strong>${netflix.title}</strong>, a bien été sauvegardée dans la base de donnée.</h3>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</c:if>
+
+
+<c:if test="${confirmation != null}">
+    <br><br><br>
+    <div class="alert alert-success alert-dismissible fade show container mt-5" role="alert">
+        <h3 class="text-center"><strong>Succès ! !</strong> ${confirmation}.</h3>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</c:if>
 
 <h1 class="text-center text-light mb-3" style="margin:auto;margin-top:100px; margin-left: 200px">Liste de shows netflix
     Administration</h1>

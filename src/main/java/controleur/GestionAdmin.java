@@ -37,6 +37,8 @@ public class GestionAdmin extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (source.equals("client")) {
+            dest = "/WEB-INF/gestionClientAdmin.jsp";
+
             ClientDao clientDao = new ClientDao();
             UserDao userDao = new UserDao();
 
@@ -46,15 +48,15 @@ public class GestionAdmin extends HttpServlet {
             session.setAttribute("listUsers", listUsers);
             session.setAttribute("listClients", listClients);
 
-            dest = "/WEB-INF/gestionClientAdmin.jsp";
         } else if (source.equals("abonnement")) {
             dest = "/WEB-INF/gestionAbonnementAdmin.jsp";
+
         } else if (source.equals("show")) {
+
             dest = "/WEB-INF/gestionShowAdmin.jsp";
             NetflixDao netflixDao = new NetflixDao();
 
             List<Netflix> listShows = netflixDao.getList50();
-
             request.setAttribute("listShows", listShows);
         }
         RequestDispatcher disp = request.getRequestDispatcher(dest);

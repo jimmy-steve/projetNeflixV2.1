@@ -29,12 +29,14 @@ public class deleteClient extends HttpServlet {
         session.setAttribute("listClients", listClients);
 
         long numeroClient = Long.parseLong(request.getParameter("id"));
+        String confirmatiom = "Vous avez supprimer le client avec le id : "+ numeroClient;
 
         /*
         On delete le user et le client
          */
         Client client = ClientDao.deleteClient(numeroClient);
         System.out.println(userDao.deleteUser(client.getIdUser()));
+        request.setAttribute("confirmation", confirmatiom);
         RequestDispatcher disp = request.getRequestDispatcher(dest);
         disp.forward(request, response);
     }

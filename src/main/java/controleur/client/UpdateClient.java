@@ -45,12 +45,11 @@ public class UpdateClient extends HttpServlet {
             User user = new User(client.getIdUser(),userName);
             iUserDao.updateUser(idUser, userName);
 
+            request.setAttribute("client", client);
             System.out.println(clientDao.getClient(numeroClient).toString());
         }catch (NumberFormatException e){
             dest = "/WEB-INF/erreur.jsp";
         }
-
-        request.setAttribute("client", client);
         RequestDispatcher disp = request.getRequestDispatcher(dest);
         disp.forward(request, response);
 

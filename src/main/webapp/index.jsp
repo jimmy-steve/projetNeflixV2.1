@@ -12,7 +12,15 @@
 
 <br><br><br><br>
 
-
+<c:if test="${listFavoris.size < 0 }">
+    <br><br><br><br><br><br>
+    <div class="alert alert-success alert-dismissible fade show container" role="alert">
+        <h3 class="text-center"><strong>Vous avez ajouter un article a votre panier ! ! </strong></h3>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</c:if>
 <c:set var="Num1" value="10" scope="page"/>
 
 
@@ -95,8 +103,35 @@
                         </tbody>
                     </table>
                 </c:if>
-
                 <c:if test="${show.id <= 0 || show.id == null}">
+
+                    <c:if test="${suppressionFavoris != null}">
+                        <br>
+                        <div class="container">
+                            <div class="alert alert-danger alert-dismissible fade show container" role="alert">
+                                <h4 class="alert-heading">Well done!</h4>
+                                <p>Vous venez de supprimer un film à votre liste de favoris</p>
+                                <hr>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </c:if>
+
+                    <c:if test="${confirmationFavoris != null}">
+                        <br>
+                        <div class="container">
+                            <div class="alert alert-success alert-dismissible fade show container" role="alert">
+                                <h4 class="alert-heading">Well done!</h4>
+                                <p>Vous venez d'ajouter un film à votre liste de favoris</p>
+                                <hr>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </c:if>
 
                     <blockquote class="blockquote mb-0 card-body">
                         <p>Bonjour ${user.username} !! </p>
@@ -165,7 +200,10 @@
                         </form>
                     </div>
 
+
                 </c:if>
+
+
             </div>
 
         </div>

@@ -40,7 +40,7 @@ public class AddNewShow extends HttpServlet {
             disp.forward(request, response);
         }
 
-        Netflix newNetflix = new Netflix(show_id,title, type, director, cast, country, dateAdded, releaseYear, rating,
+        Netflix newNetflix = new Netflix(show_id, title, type, director, cast, country, dateAdded, releaseYear, rating,
                 duration, listedIn, description);
 
         System.out.println(newNetflix);
@@ -49,9 +49,7 @@ public class AddNewShow extends HttpServlet {
         iNetflixDao.insert(newNetflix);
 
 
-
-
-        request.setAttribute("client", newNetflix);
+        request.setAttribute("netflix", newNetflix);
         RequestDispatcher disp = request.getRequestDispatcher(dest);
         disp.forward(request, response);
     }

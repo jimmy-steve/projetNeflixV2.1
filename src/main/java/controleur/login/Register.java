@@ -98,6 +98,7 @@ public class Register extends HttpServlet {
                 client.setIdUser(user.getIdUser());
                 IclientDao clientDao = new ClientDao();
                 clientDao.insert(client);
+                request.setAttribute("client", client);
 
 
                 Abonnement abonnement = new Abonnement(client.getIdAbonnement(), typeAbonnement, 25.77, user.getIdUser());
@@ -132,11 +133,10 @@ public class Register extends HttpServlet {
                 client.setIdUser(user.getIdUser());
                 IclientDao clientDao = new ClientDao();
                 clientDao.insert(client);
-
+                request.setAttribute("client", client);
 
             }
 
-            request.setAttribute("client", client);
             RequestDispatcher disp = request.getRequestDispatcher(dest);
             disp.forward(request, response);
         } else {

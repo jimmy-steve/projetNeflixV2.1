@@ -8,6 +8,15 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.util.List;
 
+/**
+ * Name : FavorisDao
+ * Classe concrète qui implémente l'interface IfavorisFao
+ * Permet de faire des opération dans la base de donnée pour sauvegarder les favoris
+ *
+ * @author Francis lafontaine
+ * @version V1
+ * @since 19/septembre/2022
+ */
 public class FavorisDao implements IfavorisDao {
     EntityManagerFactory entityManagerFactory =
             Persistence.createEntityManagerFactory("hibernate");
