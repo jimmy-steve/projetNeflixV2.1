@@ -16,9 +16,19 @@
 <body style="background-color: black">
 <%@include file="/includes/navbar.jsp" %>
 <br>
+
 <h1 class="text-center text-light" style="margin:auto;margin-top:100px">Liste de shows netflix version2</h1><br>
+<c:if test="${smallList.size() <= 0}">
+    <br><br><br>
+    <div class="alert alert-danger alert-dismissible fade show container mt-5" role="alert">
+        <h3 class="text-center"><strong>Aucun film n'a été trouver avec ce titre </strong></h3>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</c:if>
 
-
+<c:if test="${smallList.size() > 0}">
 <div class="col-12 " style="margin-right: auto; margin-left: auto">
     <div class="card">
         <table class="table table-hover table-striped">
@@ -106,7 +116,7 @@
         <br><br>
     </div>
 </div>
-
+</c:if>
 
 <%@include file="/includes/footer.jsp" %>
 </body>

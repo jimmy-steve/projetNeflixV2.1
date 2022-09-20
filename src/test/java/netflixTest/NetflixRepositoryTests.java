@@ -88,4 +88,17 @@ public class NetflixRepositoryTests {
         System.out.println("Il y a " + numberOfRow + " lignes");
     }
 
+    @Test
+    public void testGetListByTitle() {
+        String nameSearch = "Papel";
+        INetflixDao iNetflixDao = new NetflixDao();
+        List <Netflix> listTest = iNetflixDao.findNetflixByTitle(nameSearch);
+        for (Netflix tmp : listTest
+             ) {
+            System.out.println(tmp);
+        }
+    }
+
+
+
 }

@@ -83,7 +83,7 @@ public interface INetflixDao {
      *
      * @param currentPage  la page courante
      * @param numOfRecords le nombre de ligne a afficher par page
-     * @return
+     * @return une list de film de netflix
      */
     List<Netflix> findNetflixShow(int currentPage, int numOfRecords);
 
@@ -94,5 +94,13 @@ public interface INetflixDao {
      * @return un int qui est le nombre total de ligne
      */
     int getNumberOfRows();
+
+    /**
+     * Name : finNetflixByTitle
+     * Qui permet d'aller chercher un films par son title
+     * @param title le title rechercher
+     * @return une list de films de netflix
+     */
+    List <Netflix> findNetflixByTitle(String title);
 
 }

@@ -55,8 +55,12 @@ public class UpdateShowsAdmin extends HttpServlet {
         j'instancie mon interface dao pour updater un objet
          */
         INetflixDao iNetflixDao = new NetflixDao();
-        iNetflixDao.updateNetflix(id, title, type, director, cast, country, dateAdded, releaseYear,
+        boolean updated = iNetflixDao.updateNetflix(id, title, type, director, cast, country, dateAdded, releaseYear,
                 rating, duration, listedIn, description);
+
+        if (updated){
+            System.out.println("Le show : " + newNetflix.getTitle() + " a bien été updater");
+        }
 
 
         request.setAttribute("netflix", newNetflix);

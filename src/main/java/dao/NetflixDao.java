@@ -2,11 +2,13 @@ package dao;
 
 import modeles.Client;
 import modeles.Netflix;
+import modeles.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -118,19 +120,19 @@ public class NetflixDao implements INetflixDao {
             Netflix netflix = entityManager.find(Netflix.class, id);
 
 
-                netflix.setTitle(title);
-                netflix.setType(type);
-                netflix.setDirector(director);
-                netflix.setCast(cast);
-                netflix.setCountry(country);
-                netflix.setDateAdded(dateAdded);
-                netflix.setReleaseYear(releaseYear);
-                netflix.setRating(rating);
-                netflix.setDuration(duration);
-                netflix.setListedIn(listedIn);
-                netflix.setDescription(description);
+            netflix.setTitle(title);
+            netflix.setType(type);
+            netflix.setDirector(director);
+            netflix.setCast(cast);
+            netflix.setCountry(country);
+            netflix.setDateAdded(dateAdded);
+            netflix.setReleaseYear(releaseYear);
+            netflix.setRating(rating);
+            netflix.setDuration(duration);
+            netflix.setListedIn(listedIn);
+            netflix.setDescription(description);
 
-                ///--------------------------------------------------- probleme lorsque le champ est vide
+            ///--------------------------------------------------- probleme lorsque le champ est vide
 
 //            if (!netflix.getTitle().equals(title)) {
 //                netflix.setTitle(title);
@@ -238,6 +240,35 @@ public class NetflixDao implements INetflixDao {
             entityManager.close();
         }
         return numOfRows;
+    }
+
+    /**
+     * Name : finNetflixByTitle
+     * Méthode qui permet de faire une rechercher et ramène les films qui comporte le mot recherché dans son titre
+     *
+     * @param title qui est le title recherché
+     * @return une list de film de netflix
+     */
+    @Override
+    public List<Netflix> findNetflixByTitle(String title) {
+        List<Netflix> listRechercher = new ArrayList<>();
+        EntityManager entityManager = null;
+        try {
+
+            entityManager = entityManagerFactory.createEntityManager();
+            entityManager.getTransaction().begin();
+            Query query = entityManager
+                    .createNativeQuery("select * from netflix where title like '%" + title + "%'", Netflix.class);
+            listRechercher = query.getResultList();
+
+            return listRechercher;
+        } catch (Exception e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+            return listRechercher;
+        } finally {
+            entityManager.close();
+        }
     }
 
     /**
