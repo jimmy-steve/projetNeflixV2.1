@@ -1,8 +1,11 @@
 package dao;
 
+import modeles.Abonnement;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public interface IAbonnementDao {
     EntityManagerFactory entityManagerFactory =
@@ -27,4 +30,8 @@ public interface IAbonnementDao {
             return false;
         }
     }
+
+    List<Abonnement> getAllAbonnements();
+
+    double calculerPrix(String typeAbonnement);
 }

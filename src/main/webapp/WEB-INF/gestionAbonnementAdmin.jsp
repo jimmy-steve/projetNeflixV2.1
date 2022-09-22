@@ -16,7 +16,8 @@
 <%@include file="/includes/navbarAdmin.jsp" %>
 <br>
 
-<h1 class="text-center text-light mb-3" style="margin:auto;margin-top:100px; margin-left: 100px">Liste de shows netflix Administration</h1>
+<h1 class="text-center text-light mb-3" style="margin:auto;margin-top:100px; margin-left: 100px">Netflix Administration
+    - Abonnements</h1>
 
 
 <div class="container-fluid">
@@ -33,7 +34,8 @@
                         <a class="nav-link btn btn-outline-warning" href="GestionAdmin?src=client">Gestion Client</a>
                     </li>
                     <li class="nav-item mb-4 mr-2">
-                        <a class="nav-link btn-outline-danger btn" href="GestionAdmin?src=abonnement">Gestion Abonnement</a>
+                        <a class="nav-link btn-outline-danger btn" href="GestionAdmin?src=abonnement">Gestion
+                            Abonnement</a>
                     </li>
                     <li class="nav-item mb-4 mr-2">
                         <a class="nav-link btn btn-outline-warning" href="GestionAdmin?src=show"> Gestion Show </a>
@@ -43,67 +45,47 @@
         </div>
 
 
+        <div class="col-6">
+            <div class="card border border-dark" style="margin:auto;margin-top:50px">
+                <h2 class="bg-primary text-light card-header text-center text-dark">Liste des Abonnements</h2>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id User</th>
+                        <th scope="col">Id Abonnement</th>
+                        <th scope="col">Type Abonnement</th>
+                        <th scope="col">Prix</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <c:forEach var="abonnements" items="${sessionScope.listAbonnements}">
+
+                        <tr>
+
+                            <td>${abonnements.idUser}</td>
+                            <td>${abonnements.idAbonnement}</td>
+                            <td>${abonnements.typeAbonnement}</td>
+                            <td>${abonnements.prix}</td>
+                            <!--<td>
+                                <a class="btn btn-outline-danger" href="GetAbonnement?id=${abonnements.typeAbonnement}">Modifié</a>
+                                <a class="btn btn-outline-danger"
+                                   href="deleteAbonnement?id=${abonnements.typeAbonnement}">Supprimer</a>
+                            </td>-->
+
+                        </tr>
+
+                    </c:forEach>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
 
     </div>
 </div>
-
-
-<%--<div class="col-12 " style="margin-right: auto; margin-left: auto">--%>
-<%--    <div class="card">--%>
-<%--        <table class="table table-hover table-striped">--%>
-<%--            <thead class="thead-light">--%>
-
-<%--            <tr>--%>
-<%--                <th scope="col">#</th>--%>
-<%--                <th scope="col">Type</th>--%>
-<%--                <th scope="col">Title</th>--%>
-<%--                &lt;%&ndash;                        <th scope="col">Director</th>&ndash;%&gt;--%>
-<%--                &lt;%&ndash;                        <th scope="col">Cast</th>&ndash;%&gt;--%>
-<%--                <th scope="col">Country</th>--%>
-<%--                <th scope="col">date Added</th>--%>
-
-<%--                <th scope="col">Release year</th>--%>
-<%--                <th scope="col">rating</th>--%>
-<%--                <th scope="col">duration</th>--%>
-<%--                <th scope="col">listed_in</th>--%>
-<%--                &lt;%&ndash;                        <th scope="col">description</th>&ndash;%&gt;--%>
-<%--                <th scope="col">Action</th>--%>
-<%--            </tr>--%>
-<%--            </thead>--%>
-<%--            <tbody>--%>
-<%--            <c:forEach var="show" items="${sessionScope.listeShows}">--%>
-<%--                <form action="" name="forms2" method="post">--%>
-<%--                    <tr>--%>
-
-<%--                        <td>${show.showId}</td>--%>
-<%--                        <td>${show.type}</td>--%>
-<%--                        <td>${show.title}</td>--%>
-<%--                            &lt;%&ndash;                                <td>${show.director}</td>&ndash;%&gt;--%>
-<%--                            &lt;%&ndash;                                <td>${show.cast}</td>&ndash;%&gt;--%>
-<%--                        <td>${show.country}</td>--%>
-
-<%--                        <td>${show.dateAdded}</td>--%>
-<%--                        <td>${show.releaseYear}</td>--%>
-<%--                        <td>${show.rating}</td>--%>
-<%--                        <td>${show.duration}</td>--%>
-<%--                        <td>${show.listedIn}</td>--%>
-<%--                            &lt;%&ndash;                                <td>${show.description}</td>&ndash;%&gt;--%>
-
-
-<%--                        <td>--%>
-
-<%--                            <a href="DetailShow?id=${show.id}"--%>
-<%--                               class=" btn btn-success ">Modifié</a>--%>
-<%--                        </td>--%>
-<%--                    </tr>--%>
-<%--                </form>--%>
-<%--            </c:forEach>--%>
-<%--            </tbody>--%>
-
-<%--        </table>--%>
-<%--    </div>--%>
-<%--</div>--%>
-
 
 <%@include file="/includes/footer.jsp" %>
 </body>

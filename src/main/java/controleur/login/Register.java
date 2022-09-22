@@ -100,15 +100,19 @@ public class Register extends HttpServlet {
                 clientDao.insert(client);
                 request.setAttribute("client", client);
 
-
-                Abonnement abonnement = new Abonnement(client.getIdAbonnement(), typeAbonnement, 25.77, user.getIdUser());
-
                 /*
                  * J"enregistre l'abonnement fans la base donnée
                  */
+                IAbonnementDao iabonnementDao = new AbonnementDao();
 
-                AbonnementDao abonnementDao = new AbonnementDao();
-                abonnementDao.insert(abonnement);
+                /*
+                J'affecte le prix qui va avec l'abonnement prévu
+                 */
+                double prixAbonnement = iabonnementDao.calculerPrix(typeAbonnement);
+
+                Abonnement abonnement = new Abonnement(client.getIdAbonnement(), typeAbonnement, prixAbonnement, user.getIdUser());
+                iabonnementDao.insert(abonnement);
+                request.setAttribute("prix", prixAbonnement);
 
                 /*
                  * Sinon je créer un client admin----------------------------------ADMIN

@@ -6,6 +6,7 @@
     <title>Home Page</title>
     <%@include file="/includes/head.jsp" %>
     <link type="text/css" rel="stylesheet" href="includes/styleIndex.css">
+    <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 </head>
 <body style="background-color: black">
 <%@include file="/includes/navbar.jsp" %>

@@ -1,9 +1,7 @@
 package controleur;
 
-import dao.ClientDao;
-import dao.INetflixDao;
-import dao.NetflixDao;
-import dao.UserDao;
+import dao.*;
+import modeles.Abonnement;
 import modeles.Client;
 import modeles.Netflix;
 import modeles.User;
@@ -50,6 +48,14 @@ public class GestionAdmin extends HttpServlet {
 
         } else if (source.equals("abonnement")) {
             dest = "/WEB-INF/gestionAbonnementAdmin.jsp";
+
+
+            AbonnementDao abonnementDao = new AbonnementDao();
+
+            List<Abonnement> listAbonnement = abonnementDao.getAllAbonnements();
+
+            session.setAttribute("listAbonnements",listAbonnement);
+
 
         } else if (source.equals("show")) {
 

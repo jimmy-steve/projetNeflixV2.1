@@ -78,6 +78,7 @@
                                 <option value="annuel">Annuel</option>
                                 <option value="3mois">3 mois</option>
                                 <option value="6mois">6 mois</option>
+                                <option value="2ans">2 ans</option>
                             </select>
 
                         </td>

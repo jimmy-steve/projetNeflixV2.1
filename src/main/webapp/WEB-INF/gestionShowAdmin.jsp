@@ -62,7 +62,7 @@
         </div>
 
 
-        <div class="col-9 m-5" style="margin-right: auto; margin-left: auto">
+        <div class="col-9 m-5 mx-auto" style="margin-right: auto; margin-left: auto">
             <div class="card">
                 <table class="table table-hover table-striped table-responsive">
                     <thead class="thead-light">
