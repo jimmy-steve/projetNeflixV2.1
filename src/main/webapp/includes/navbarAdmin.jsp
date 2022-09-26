@@ -8,7 +8,8 @@
 <!-- La barre de navigation en haut -->
 <nav class="cc-navbar navbar navbar-expand-lg position-fixed navbar-dark w-100" style="background-color: black">
     <div class="container-fluid">
-        <a class="navbar-brand text-uppercase fw-bolder mx-4 py-3 ml-5" href="./Connecter.jsp" style="color: red">Netflix Admin</a>
+        <a class="navbar-brand text-uppercase fw-bolder mx-4 py-3 ml-5"
+           href="/WEB-INF/Connecter.jsp" style="color: red">Frenchflix Admin</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -20,7 +21,7 @@
 
                 <li class="nav-item pe-4 mr-4">
                     <a class="nav-link active" aria-current="page"
-                       href="../WEB/INF/Connecter.jsp">Accueil</a>
+                       href="<c:url value="/WEB-INF/Connecter.jsp"/>">Accueil</a>
                 </li>
 
                 <li class="nav-item dropdown pe-4 mr-4">

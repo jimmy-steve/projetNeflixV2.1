@@ -115,7 +115,8 @@
                             <input type="password" class="form-control" id="passWordNew" name="passWordNew"
                                    placeholder="******"
                                    value="" required minlength="5"
-                                   maxlength="45">
+                                   maxlength="45"
+                                   onchange="verifiedPassword()">
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -125,9 +126,9 @@
                             <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
                                    placeholder="******"
                                    value="" required minlength="5"
-                                   maxlength="45">
-                            <div class="valid-feedback">
-                                Looks good!
+                                   maxlength="45"
+                                    onchange="verifiedPassword()">
+                            <div id="messageValidation" class="mt-1 text-center">
                             </div>
                         </div>
                     </div>
@@ -148,7 +149,7 @@
                     <div class="text-center">
                         <input type="hidden" name="admin" value="null">
                         <input type="hidden" name="source" value="registerForms">
-                        <button class="btn btn-danger" style="width: 30%" type="submit">SignIn</button>
+                        <button class="btn btn-danger" style="width: 30%" type="submit" id="btnSignIn" disabled>SignIn</button>
                     </div>
                     <br>
 

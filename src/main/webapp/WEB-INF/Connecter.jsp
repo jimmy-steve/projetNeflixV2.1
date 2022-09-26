@@ -79,13 +79,13 @@
 
 
         <div class="col-8 mx-auto">
-            <h2>Afficher Liste de films avec pagination </h2>
+            <h2 class="text-light">Afficher Liste de films avec pagination </h2>
             <form action="ReadAllNetflix">
 
                 <input type="hidden" name="currentPage" value="1">
 
                 <div class="form-group col-md-4">
-                    <label for="records" class="text-light">Sélectionner le nombre de ligne :</label>
+                    <label for="records" class="text-light">Sélectionner le nombre de lignes :</label>
 
                     <select class="form-control" id="records" name="recordsPerPage">
                         <option value="5">5</option>
