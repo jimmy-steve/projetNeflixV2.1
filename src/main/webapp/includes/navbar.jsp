@@ -13,7 +13,7 @@
 
 
                         <div class="container-fluid">
-                            <h3 class="mb-3 text-center">
+                            <h3 class="mb-3 text-center" style="color: red">
                                     Liste de Favoris
                             </h3>
                             <hr>
@@ -161,7 +161,7 @@
                             <input type="hidden" name="type" value="all">
                             <input type="hidden" id="action" name="action" value="PasAdmin">
                             <input type="hidden" name="pays" value="all">
-                            <input type="hidden" name="currentPage" value="2">
+                            <input type="hidden" name="currentPage" value="1">
                             <a>
                                 <input class="nav-link text-light btn " style="margin-right: 10px" type="submit"
                                        value="Liste "/>
@@ -173,7 +173,9 @@
 
 
                 <form class="form-inline" action="SearchByTitle" method="get">
-                    <input type="hidden" name="currentPage" value="2">
+                    <input type="hidden" name="recordsPerPage" value="20">
+                    <input type="hidden" name="source" value="pasAdmin">
+                    <input type="hidden" name="currentPage" value="1">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search by title"
                            name="titleSearch" aria-label="Search" required minlength="3">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button>

@@ -45,11 +45,11 @@
         </div>
 
 
-        <div class="col-6">
-            <div class="card border border-dark" style="margin:auto;margin-top:50px">
+        <div class="col-8 mx-auto">
+            <div class="border border-dark" style="margin:auto;margin-top:50px">
                 <h2 class="bg-primary text-light card-header text-center text-dark">Liste des Abonnements</h2>
-                <table class="table table-hover">
-                    <thead>
+                <table class="table table-hover bg-light text-dark">
+                    <thead class="bg-dark text-light">
                     <tr>
                         <th scope="col">Id User</th>
                         <th scope="col">Id Abonnement</th>
@@ -68,11 +68,11 @@
                             <td>${abonnements.idAbonnement}</td>
                             <td>${abonnements.typeAbonnement}</td>
                             <td>${abonnements.prix}</td>
-                            <!--<td>
+                            <td>
                                 <a class="btn btn-outline-danger" href="GetAbonnement?id=${abonnements.typeAbonnement}">Modifié</a>
                                 <a class="btn btn-outline-danger"
                                    href="deleteAbonnement?id=${abonnements.typeAbonnement}">Supprimer</a>
-                            </td>-->
+                            </td>
 
                         </tr>
 

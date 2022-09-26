@@ -63,9 +63,9 @@
 
 
         <div class="col-9 m-5 mx-auto" style="margin-right: auto; margin-left: auto">
-            <div class="card">
-                <table class="table table-hover table-striped table-responsive">
-                    <thead class="thead-light">
+
+                <table class="table table-hover table-striped table-responsive table-light">
+                    <thead class="thead-light bg-dark text-light">
 
                     <tr>
                         <th scope="col">#</th>
@@ -108,7 +108,6 @@
                 </table>
 
 
-            </div>
 
 
     </div>

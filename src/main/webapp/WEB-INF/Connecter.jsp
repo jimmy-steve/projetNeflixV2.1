@@ -31,7 +31,8 @@
     <br><br><br>
     <div class="alert alert-success alert-dismissible fade show container mt-5" role="alert">
         <h3 class="text-center"><strong>Succès ! ! </strong>
-            Le film ou l'émission ayant comme titre : <strong>${netflix.title}</strong>, a bien été sauvegardée dans la base de donnée.</h3>
+            Le film ou l'émission ayant comme titre : <strong>${netflix.title}</strong>, a bien été sauvegardée dans la
+            base de donnée.</h3>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -79,79 +80,83 @@
 
 
         <div class="col-8 mx-auto">
-            <h2 class="text-light">Afficher Liste de films avec pagination </h2>
+            <h2 class="text-light text-center">Afficher Liste de films avec pagination </h2>
             <form action="ReadAllNetflix">
 
                 <input type="hidden" name="currentPage" value="1">
 
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4 mx-auto">
                     <label for="records" class="text-light">Sélectionner le nombre de lignes :</label>
+                    <table>
+                        <tr>
+                            <td>
+                                <select class="form-control text-center" id="records" name="recordsPerPage">
+                                    <option value="5">5</option>
+                                    <option value="10" selected>10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                </select>
+                            </td>
+                            <td>
+                                <button type="submit" class="btn btn-primary m-2">Submit</button>
+                            </td>
+                        </tr>
+                    </table>
 
-                    <select class="form-control" id="records" name="recordsPerPage">
-                        <option value="5">5</option>
-                        <option value="10" selected>10</option>
-                        <option value="15">15</option>
-                        <option value="20">20</option>
-                    </select>
 
-                </div>
-                <div class="mx-auto">
-                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
 
             <c:if test="${listShows.size() > 0 }">
-                <div class="col-10 m-5" style="margin-right: auto; margin-left: auto">
-                    <div class="card">
-                        <table class="table table-hover table-striped">
-                            <thead class="thead-light">
 
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Type</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Country</th>
-                                <th scope="col">date Added</th>
-                                <th scope="col">Release year</th>
-                                <th scope="col">rating</th>
-                                <th scope="col">duration</th>
-                                <th scope="col">listed_in</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
+                <table class="table table-hover table-striped bg-light text-dark">
+                    <thead class="thead-light">
 
-                            <c:forEach var="netflix" items="${requestScope.listShows}">
-                                <tr>
-                                    <td>${netflix.showId}</td>
-                                    <td>${netflix.type}</td>
-                                    <td>${netflix.title}</td>
-                                    <td>${netflix.country}</td>
-                                    <td>${netflix.dateAdded}</td>
-                                    <td>${netflix.releaseYear}</td>
-                                    <td>${netflix.rating}</td>
-                                    <td>${netflix.duration}</td>
-                                    <td>${netflix.listedIn}</td>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Country</th>
+                        <th scope="col">date Added</th>
+                        <th scope="col">Release year</th>
+                        <th scope="col">rating</th>
+                        <th scope="col">duration</th>
+                        <th scope="col">listed_in</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
-                                    <td>
-                                        <a href="DetailShow?source=admin&id=${netflix.id}"
-                                           class=" btn btn-success ">Modifié
-                                        </a>
-                                    </td>
-                                </tr>
-                            </c:forEach>
+                    <c:forEach var="netflix" items="${requestScope.listShows}">
+                        <tr>
+                            <td>${netflix.showId}</td>
+                            <td>${netflix.type}</td>
+                            <td>${netflix.title}</td>
+                            <td>${netflix.country}</td>
+                            <td>${netflix.dateAdded}</td>
+                            <td>${netflix.releaseYear}</td>
+                            <td>${netflix.rating}</td>
+                            <td>${netflix.duration}</td>
+                            <td>${netflix.listedIn}</td>
 
-                            </tbody>
+                            <td>
+                                <a href="DetailShow?source=admin&id=${netflix.id}"
+                                   class=" btn btn-success ">Modifié
+                                </a>
+                            </td>
+                        </tr>
+                    </c:forEach>
 
-                        </table>
+                    </tbody>
+
+                </table>
 
 
-                    </div>
-
-                    <br>
-                    <div class="col-2 mx-auto">
+                <br>
+                <div class="col-3 mx-auto text-center">
+                    <c:if test="${requestScope.noOfPages > 1}">
                         <nav aria-label="Navigation for netflix">
-                            <ul class="pagination">
+                            <ul class="pagination ">
                                 <c:if test="${currentPage != 1}">
                                     <li class="page-item"><a class="page-link"
                                                              href="ReadAllNetflix?recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}">Previous</a>
@@ -180,54 +185,55 @@
                                 </c:if>
                             </ul>
                         </nav>
-                    </div>
+                    </c:if>
                 </div>
+
             </c:if>
 
 
             <c:if test="${listShows == null}">
-                <div class="col-8 mx-auto">
-                    <div class="card-group">
-                        <div class="card">
-                            <img class="card-img-top" src="./images/photo31.webp" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to
-                                    additional content. This content is a little bit longer.</p>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Last updated 3 mins ago</small>
-                            </div>
+
+                <div class="card-group">
+                    <div class="card">
+                        <img class="card-img-top" src="./images/photo31.webp" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural
+                                lead-in to
+                                additional content. This content is a little bit longer.</p>
                         </div>
-                        <div class="card">
-                            <img class="card-img-top" src="./images/photo21.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This card has supporting text below as a natural lead-in to
-                                    additional
-                                    content.</p>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Last updated 3 mins ago</small>
-                            </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Last updated 3 mins ago</small>
                         </div>
-                        <div class="card">
-                            <img class="card-img-top" src="./images/photo11.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to
-                                    additional content. This card has even longer content than the first to show that
-                                    equal
-                                    height action.</p>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Last updated 3 mins ago</small>
-                            </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="./images/photo21.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This card has supporting text below as a natural lead-in to
+                                additional
+                                content.</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Last updated 3 mins ago</small>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="./images/photo11.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural
+                                lead-in to
+                                additional content. This card has even longer content than the first to show that
+                                equal
+                                height action.</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Last updated 3 mins ago</small>
                         </div>
                     </div>
                 </div>
+
 
             </c:if>
 
