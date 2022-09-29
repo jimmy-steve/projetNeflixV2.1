@@ -44,7 +44,7 @@
                         <fmt:message key="menu.abonnement"/>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">
+                        <li><a class="dropdown-item" href="abonnement.jsp">
                             <fmt:message key="menu.forfait"/>
                         </a></li>
                     </ul>

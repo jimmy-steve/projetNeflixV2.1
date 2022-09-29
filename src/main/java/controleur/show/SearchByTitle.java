@@ -83,7 +83,7 @@ public class SearchByTitle extends HttpServlet {
                 request.setAttribute("smallList", smallList);
             }
 
-
+            request.setAttribute("smallList", listRechercher);
 
         }
 

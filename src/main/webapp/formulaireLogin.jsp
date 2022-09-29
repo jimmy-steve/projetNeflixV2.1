@@ -44,11 +44,17 @@
                                         <h3 class="text-center text-danger mt-5">Connexion</h3>
                                         <div class="form-group">
                                             <label for="username" class="text-light">Username:</label><br>
-                                            <input value="${username}" placeholder="username" type="text" name="username" id="username" class="form-control">
+                                            <input value="${username}" placeholder="username" type="text"
+                                                   name="username" id="username" class="form-control"
+                                                   required minlength="2"
+                                                   maxlength="45">
                                         </div>
                                         <div class="form-group">
                                             <label for="password" class="text-light">Password:</label><br>
-                                            <input placeholder="*****" type="password" name="password" id="password" class="form-control">
+                                            <input placeholder="*****" type="password" name="password"
+                                                   id="password" class="form-control"
+                                                   required minlength="5"
+                                                   maxlength="45">
                                         </div>
 
 

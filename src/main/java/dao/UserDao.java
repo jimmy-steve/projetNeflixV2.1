@@ -164,7 +164,7 @@ public class UserDao implements IUserDao {
      * @return le user trouvé ou null
      */
     @Override
-    public Object find(String username) {
+    public Object find(String username) throws NullPointerException{
         EntityManager entityManager = null;
         try {
             entityManager = entityManagerFactory.createEntityManager();
@@ -173,9 +173,6 @@ public class UserDao implements IUserDao {
                     setParameter("username", username).getSingleResult();
             entityManager.close();
             return user;
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-            return null;
         } catch (PersistenceException e) {
             e.printStackTrace();
             assert entityManager != null;

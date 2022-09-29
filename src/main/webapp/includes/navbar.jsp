@@ -116,29 +116,9 @@
                                 <button type="submit" class="dropdown-item">TOP 12</button>
                             </form>
                         </li>
-                        <li><a class="dropdown-item" href="#">News</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                 </li>
 
-
-                <li class="nav-item dropdown pe-4 mr-4">
-                    <a class="nav-link dropdown-toggle" href="#" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        Abonnement
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Jeux</a></li>
-
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">New</a></li>
-                    </ul>
-                </li>
 
                 <li class="nav-item">
                     <form action="ShowCardSpecial" name="forms1" method="post">

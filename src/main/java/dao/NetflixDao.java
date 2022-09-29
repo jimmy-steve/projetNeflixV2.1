@@ -350,6 +350,32 @@ public class NetflixDao implements INetflixDao {
     }
 
     /**
+     * Name : getAllChina
+     * Permet de faire une requête de tous les film d'origine chinois
+     *
+     * @return une list de show de netflix de film chinois
+     */
+    public List<Netflix> GetAllChina() {
+        List<Netflix> listChinese = new ArrayList<>();
+
+        EntityManager entityManager = null;
+        try {
+            entityManager = entityManagerFactory.createEntityManager();
+            entityManager.getTransaction().begin();
+            Query query = entityManager.createNativeQuery("select * from netflix \n" +
+                    "where country like 'China';", Netflix.class);
+            listChinese = query.getResultList();
+            return listChinese;
+        } catch (Exception e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+            return listChinese;
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    /**
      * Name : getAllAmerican
      * Permet de faire une requête de tous les film américan
      *

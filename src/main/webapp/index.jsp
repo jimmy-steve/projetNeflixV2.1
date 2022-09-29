@@ -162,8 +162,7 @@
                                             <option value="usa">Etats-Unis</option>
                                             <option value="canada">Canadien</option>
                                             <option value="recentCanadianTV">More recent canadian TV show</option>
-                                            <option>4</option>
-                                            <option>5</option>
+                                            <option value="chinese" >Chinois</option>
                                         </select>
 
                                     </div>
@@ -178,8 +177,6 @@
                                             <option value="kids">Kids</option>
                                             <option value="scPhy">Science Fiction</option>
                                             <option value="thrillers">Thrillers</option>
-                                            <option>4</option>
-                                            <option>5</option>
                                         </select>
 
 

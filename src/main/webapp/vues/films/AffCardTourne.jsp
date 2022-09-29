@@ -74,11 +74,11 @@
 <br>
 <h1 class="text-center text-light" style="margin:auto;margin-top:100px">Format Card Special </h1><br>
 
-<h3 class="text-center text-light">Notre sélection des plus récent Films Canadien </h3><br>
+<h3 class="text-center text-light">Notre sélection des plus récents Films Canadiens </h3><br>
 <div class="container-fluid ml-4" style="margin-top: 50px;">
     <div class="row mx-auto">
         <c:forEach var="show" items="${requestScope.listeShows}">
-            <div class="col-2">
+            <div class="col-3">
                 <div class="card-container ml-5 mb-4 mt-5">
 
 

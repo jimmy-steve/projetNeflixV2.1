@@ -55,7 +55,9 @@ public class ShowCtr extends HttpServlet {
             listeShows = showDao.GetAllAmerican();
         } else if (option1.equals("recentCanadianTV")) {
             listeShows = showDao.GetAllCanadianShowsRecent();
-        } else if (option1.equals("all")) {
+        } else if (option1.equals("chinese")) {
+            listeShows = showDao.GetAllChina();
+        }else if (option1.equals("all")) {
             listeShows = showDao.getAllShows();
         }
 
